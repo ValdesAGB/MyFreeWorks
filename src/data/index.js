@@ -33,6 +33,7 @@ import poterie2 from '../assets/poterie/poterie2.jpg';
 import poterie3 from '../assets/poterie/poterie3.jpg';
 import poterie4 from '../assets/poterie/poterie4.jpg';
 import poterie5 from '../assets/poterie/poterie5.jpg';
+import notFound from '../assets/404/404.jpg';
 /*import Home from '../pages/Home';
 import NotFound from '../pages/404';
 import Graphisme from '../pages/Graphisme';
@@ -175,37 +176,72 @@ export const registrationElement = [
 
 export const connexionElement = [
   {
-    id: 'adressMail',
-    title: 'Adresse Mail :',
-    labelClass: 'form-label',
-    inputClass: 'form-control',
-    inputType: 'email',
-    divClass: 'm-2',
+    dropdownElement: [
+      {
+        id: 'adressMailDrop',
+        title: 'Adresse Mail :',
+        labelClass: 'form-label',
+        inputClass: 'form-control',
+        inputType: 'email',
+        divClass: 'm-2',
+      },
+
+      {
+        id: 'passwordConnexionDrop',
+        title: 'Mot de passe',
+        labelClass: 'form-label',
+        inputClass: 'form-control',
+        inputType: 'password',
+        divClass: 'm-2',
+      },
+
+      {
+        id: 'rememberMeDrop',
+        title: ' Se souvenir de moi',
+        labelClass: 'form-check-label',
+        inputClass: 'form-check-input',
+        inputType: 'checkbox',
+        divClass: 'm-2 form-check',
+      },
+    ],
   },
 
   {
-    id: 'passwordConnexion',
-    title: 'Mot de passe',
-    labelClass: 'form-label',
-    inputClass: 'form-control',
-    inputType: 'password',
-    divClass: 'm-2',
-  },
+    modalElement: [
+      {
+        id: 'adressMailModal',
+        title: 'Adresse Mail :',
+        inputType: 'email',
+        labelClass: 'form-label',
+        inputClass: 'form-control',
+        divClass: 'mb-3',
+      },
 
-  {
-    id: 'rememberMe',
-    title: ' Se souvenir de moi',
-    labelClass: 'form-check-label',
-    inputClass: 'form-check-input',
-    inputType: 'checkbox',
-    divClass: 'm-2 form-check',
+      {
+        id: 'passwordConnexionModal',
+        title: 'Mot de passe :',
+        inputType: 'password',
+        labelClass: 'form-label',
+        inputClass: 'form-control',
+        divClass: 'mb-3',
+      },
+
+      {
+        id: 'rememberMeModal',
+        title: ' Se souvenir de moi',
+        labelClass: 'form-check-label',
+        inputClass: 'form-check-input',
+        inputType: 'checkbox',
+        divClass: 'm-2 form-check',
+      },
+    ],
   },
 ];
 
 export const menuElement = [
   {
     id: 'acceuil',
-    to: '/MyFreeWorks',
+    to: '/',
     name: 'Acceuil',
     icone: 'fa-solid fa-house',
   },
@@ -609,3 +645,5 @@ export const homeElement = [
   photographieElement[getRamdomInt(0, photographieElement.length)],
   poterieElement[getRamdomInt(0, poterieElement.length)],
 ];
+
+export const notFoundElement = notFound;
