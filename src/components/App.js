@@ -20,7 +20,7 @@ function App() {
         {/*{routeElement.map(({ element, path }) => (
           <Route id={`${element}-0`} path={path} element={<element />} />
         ))}*/}
-        <Route path="/MyFreeWorks" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/graphisme" element={<Graphisme />} />
         <Route path="/peinture" element={<Peinture />} />
         <Route path="/poterie" element={<Poterie />} />

@@ -16,7 +16,7 @@ function View({ cover, name, isSold, price, soldPrice, to }) {
 
   return (
     <div className="col-12 col-sm-6 col-lg-3">
-      {pathActuel !== '/MyFreeWorks' ? (
+      {pathActuel !== '/' ? (
         <div className="m-3">
           {isSold && soldPrice !== 0 ? (
             <PriceSpan className="fw-light mt-2 text-center">
@@ -54,7 +54,7 @@ function View({ cover, name, isSold, price, soldPrice, to }) {
         <Link
           to={to}
           className="text-black text-decoration-none"
-          title="voir plus"
+          title="View more"
         >
           <div className="m-3">
             {isSold && soldPrice !== 0 ? (
