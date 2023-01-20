@@ -7,14 +7,14 @@ function Button({ name, price, soldPrice }) {
     font-family: ${police.ff1};
   `;
 
-  /* function things() {
-    let Xprice = soldPrice !== 0 ? soldPrice : price;
-    console.log('name :', name, 'Xprice :', Xprice + '$');
-  }*/
+  function things() {
+    let Xprice = soldPrice !== 0 ? `${soldPrice} $ au lieu de ${price}` : price;
+    alert(`Nom : ${name} ; Prix : ${Xprice} $`);
+  }
   return (
     <div>
-      <ButtonStyle className="btn btn-primary p-1">
-        Ajouter au panier
+      <ButtonStyle className="btn btn-primary p-1" onClick={() => things()}>
+        View Price
       </ButtonStyle>
     </div>
   );
