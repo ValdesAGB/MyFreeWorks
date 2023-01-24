@@ -1,6 +1,11 @@
 import React from 'react';
+import Icone from './Icone';
 
 function ConnexionForm({ mapElement }) {
+  let passwordConnexionDrop = document.getElementById('passwordConnexionDrop');
+  let passwordConnexionModal = document.getElementById(
+    'passwordConnexionModal'
+  );
   return (
     <form>
       {mapElement.map(
@@ -15,6 +20,13 @@ function ConnexionForm({ mapElement }) {
               id={id}
               aria-describedby="emailHelp"
             />
+            {id === 'passwordConnexionDrop' && (
+              <Icone data={passwordConnexionDrop} />
+            )}
+
+            {id === 'passwordConnexionModal' && (
+              <Icone data={passwordConnexionModal} />
+            )}
           </div>
         )
       )}

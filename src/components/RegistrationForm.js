@@ -1,7 +1,13 @@
 import React from 'react';
 import { registrationElement } from '../data';
+import Icone from './Icone';
 
 function RegistrationForm() {
+  let passwordRegistration = document.getElementById('passwordRegistration');
+  let checkPasswordRegistration = document.getElementById(
+    'checkPasswordRegistration'
+  );
+
   return (
     <form>
       {registrationElement.map(
@@ -28,6 +34,12 @@ function RegistrationForm() {
               />
             )}
             {inputType === '' && null}
+            {id === 'passwordRegistration' && (
+              <Icone data={passwordRegistration} />
+            )}
+            {id === 'checkPasswordRegistration' && (
+              <Icone data={checkPasswordRegistration} />
+            )}
           </div>
         )
       )}
