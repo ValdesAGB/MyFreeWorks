@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { siteName } from '../data';
+import { colors, police } from '../untils';
 import Identification from './Identification';
 import Search from './Search';
 
@@ -8,16 +10,15 @@ function Header() {
     <section>
       <div
         style={{
-          backgroundColor: '#660766',
-          fontFamily:
-            "'Sitka Subheading', calibri,Times, 'Times New Roman', Georgia, serif",
+          backgroundColor: colors.headerBackground,
+          fontFamily: police.ff1,
         }}
         className="row align-items-center p-1 text-white"
       >
         <div className="col-7 col-lg-4">
           <h1>
             <Link to="/" className="text-white text-decoration-none">
-              MyFreeWorks
+              {siteName}
             </Link>
           </h1>
         </div>

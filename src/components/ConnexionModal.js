@@ -1,12 +1,10 @@
 import React from 'react';
-import { registrationElement } from '../data';
 import { colors } from '../untils';
-import RegistrationForm from './RegistrationForm';
+import ConnexionForm from './ConnexionForm';
 
-function Registration() {
-  let titleName = 'Inscription';
+function ConnexionModal({ titleName, mapValeur }) {
   return (
-    <div className="col-lg-5 col">
+    <div className="col-lg-7 col-6 d-md-none">
       <button
         style={{
           backgroundColor: colors.headerBackground,
@@ -15,14 +13,13 @@ function Registration() {
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#connexionModal"
       >
         {titleName}
       </button>
-
       <div
         className="modal fade text-black"
-        id="exampleModal"
+        id="connexionModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -42,7 +39,7 @@ function Registration() {
             </div>
 
             <div className="modal-body">
-              <RegistrationForm mapElement={registrationElement} />
+              <ConnexionForm mapElement={mapValeur} />
             </div>
           </div>
         </div>
@@ -51,4 +48,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default ConnexionModal;

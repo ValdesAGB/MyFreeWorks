@@ -87,6 +87,8 @@ export const routeElement = [
   },
 ];*/
 
+export const siteName = 'MyFreeWorks';
+
 export const registrationElement = [
   {
     id: 'name-0',
@@ -283,19 +285,16 @@ export const networks = [
   {
     id: 'Facebook',
     icone: 'fs-4 text-white fa-brands fa-facebook-f',
-    link: 'https://comeup.com/profil/valdesagb',
   },
 
   {
     id: 'Twitter',
     icone: 'fs-4 text-white fa-brands fa-twitter',
-    link: 'https://comeup.com/profil/valdesagb',
   },
 
   {
     id: 'LinkedIn',
     icone: 'fs-4 text-white fa-brands fa-linkedin',
-    link: 'https://comeup.com/profil/valdesagb',
   },
 ];
 
@@ -653,3 +652,10 @@ export const homeElement = [
   photographieElement[getRandomInt(0, photographieElement.length)],
   poterieElement[getRandomInt(0, poterieElement.length)],
 ];
+
+export const date = new Date();
+
+export const messageAlert =
+  "Vous serez rediriger vers le profil ComeUp du concepteur de ce site où vous pourrez discuter avec lui de vos besoins ou projets. Ne vous en faite pas, c'est totalement gratuit 😁.";
+
+export const comeUpLink = 'https://comeup.com/profil/valdesagb';
