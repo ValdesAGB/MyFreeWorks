@@ -10,6 +10,7 @@ function Peinture() {
           ({ id, name, cover, isSold, price, soldPrice, to }) => (
             <View
               key={id}
+              id={id}
               name={name}
               cover={cover}
               isSold={isSold}

@@ -5,7 +5,7 @@ import ViewHome from './ViewHome';
 import { colors } from '../untils';
 import ViewOthers from './ViewOthers';
 
-function View({ cover, name, isSold, price, soldPrice, to }) {
+function View({ id, cover, name, isSold, price, soldPrice, to }) {
   const PriceSpan = styled.span`
     position: absolute;
     background-color: ${colors.headerBackground};
@@ -19,6 +19,7 @@ function View({ cover, name, isSold, price, soldPrice, to }) {
     <div className="col-12 col-sm-6 col-lg-3">
       {pathActuel !== '/' ? (
         <ViewOthers
+          id={id}
           cover={cover}
           name={name}
           isSold={isSold}

@@ -58,3 +58,16 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const ProductContext = createContext();
+export const ProductProvider = ({ children }) => {
+  const [product, setProduct] = useState(null);
+  const toggleProduct = (prod) => {
+    setProduct(prod);
+  };
+  return (
+    <ProductContext.Provider value={{ product, toggleProduct }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};

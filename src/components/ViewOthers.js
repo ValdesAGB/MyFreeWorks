@@ -1,40 +1,60 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from './Button';
 import PropTypes from 'prop-types';
 import { police } from '../untils';
+import { Link } from 'react-router-dom';
+import { ProductContext } from '../untils/context';
 
-function ViewOthers({ isSold, soldPrice, price, cover, name, PriceSpan }) {
+function ViewOthers({ id, isSold, soldPrice, price, cover, name, PriceSpan }) {
+  const { toggleProduct } = useContext(ProductContext);
   return (
     <div className="m-3">
-      {isSold && soldPrice !== 0 ? (
-        <PriceSpan className="fw-light mt-2 text-center">
-          <div className="fs-5">{soldPrice} $</div>
+      <Link
+        to={`/viewmore/${id}`}
+        className="text-dark text-decoration-none"
+        onClick={() =>
+          toggleProduct({
+            id,
+            isSold,
+            soldPrice,
+            price,
+            cover,
+            name,
+          })
+        }
+      >
+        <>
+          {isSold && soldPrice !== 0 ? (
+            <PriceSpan className="fw-light mt-2 text-center">
+              <div className="fs-5">{soldPrice} $</div>
+              <span
+                style={{
+                  fontSize: '0.8em',
+                  textDecorationLine: 'line-through',
+                }}
+              >
+                {price} $
+              </span>
+            </PriceSpan>
+          ) : (
+            <PriceSpan className="fw-light mt-2">{price} $</PriceSpan>
+          )}
+          <img
+            src={cover}
+            alt={`${name} - cover`}
+            className="w-100 rounded"
+            style={{ width: '250px', height: '250px' }}
+          />
           <span
+            className="mt-2"
             style={{
-              fontSize: '0.8em',
-              textDecorationLine: 'line-through',
+              fontFamily: police.ff1,
             }}
           >
-            {price} $
+            {name}
           </span>
-        </PriceSpan>
-      ) : (
-        <PriceSpan className="fw-light mt-2">{price} $</PriceSpan>
-      )}
-      <img
-        src={cover}
-        alt={`${name} - cover`}
-        className="w-100 rounded"
-        style={{ width: '250px', height: '250px' }}
-      />
-      <span
-        className="mt-2"
-        style={{
-          fontFamily: police.ff1,
-        }}
-      >
-        {name}
-      </span>
+        </>
+      </Link>
       <Button name={name} price={price} soldPrice={soldPrice} />
     </div>
   );
