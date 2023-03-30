@@ -4,7 +4,7 @@ import ConnexionForm from './ConnexionForm';
 
 function ConnexionModal({ titleName, mapValeur }) {
   return (
-    <div className="col-lg-7 col-6 d-md-none">
+    <div className="col-lg-7 col-6">
       <button
         style={{
           backgroundColor: colors.headerBackground,

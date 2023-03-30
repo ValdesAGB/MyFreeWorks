@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CheckPasswordContext } from '../untils/context';
 
-function Icone({ data }) {
-  function show() {
-    if (data !== null) {
-      data.setAttribute('type', 'text');
-      setTimeout(() => {
-        data.setAttribute('type', 'password');
-      }, 3000);
-    } else {
-      console.log('error');
-    }
-  }
+function Icone({ id }) {
+  const { toggleIconeState } = useContext(CheckPasswordContext);
   return (
     <React.Fragment>
-      <i
-        className="bi bi-eye-fill btn"
-        title="Afficher"
-        onClick={() => show()}
-      ></i>
+      <div className="form-check my-3">
+        <input
+          className="form-check-input"
+          type="checkbox"
+          id={id}
+          onClick={(e) => toggleIconeState(e.target.checked)}
+        />
+        <label className="form-check-label" htmlFor={id}>
+          Afficher le mot de passe
+        </label>
+      </div>
     </React.Fragment>
   );
 }

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext, CheckPasswordContext } from '../untils/context';
 import Icone from './Icone';
 
 function ConnexionForm({ mapElement }) {
-  let passwordConnexionDrop = document.getElementById('passwordConnexionDrop');
-  let passwordConnexionModal = document.getElementById(
-    'passwordConnexionModal'
-  );
+  const { iconeState } = useContext(CheckPasswordContext);
+  const { setLogMail, setLogPaswword, login } = useContext(AuthContext);
+
   return (
     <form>
       {mapElement.map(
@@ -15,23 +15,33 @@ function ConnexionForm({ mapElement }) {
               {title}
             </label>
             <input
-              type={inputType}
+              type={
+                id === 'passwordConnexionModal' && iconeState === true
+                  ? 'text'
+                  : inputType
+              }
               className={inputClass}
               id={id}
               aria-describedby="emailHelp"
+              onChange={(e) => {
+                id === 'passwordConnexionModal'
+                  ? setLogPaswword(e.target.value)
+                  : setLogMail(e.target.value);
+              }}
             />
-            {id === 'passwordConnexionDrop' && (
-              <Icone data={passwordConnexionDrop} />
-            )}
-
-            {id === 'passwordConnexionModal' && (
-              <Icone data={passwordConnexionModal} />
-            )}
           </div>
         )
       )}
+      <Icone id="connexion" />
 
-      <button type="submit " className="btn btn-primary m-3">
+      <button
+        type="submit "
+        className="btn btn-primary m-3"
+        onClick={(e) => {
+          e.preventDefault();
+          console.log(login);
+        }}
+      >
         Se connecter
       </button>
     </form>

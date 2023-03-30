@@ -91,7 +91,7 @@ export const siteName = 'MyFreeWorks';
 
 export const registrationElement = [
   {
-    id: 'name-0',
+    id: 'lastName',
     title: 'Nom :',
     inputType: 'text',
     labelClass: 'form-label',
@@ -100,7 +100,7 @@ export const registrationElement = [
   },
 
   {
-    id: 'firstName-0',
+    id: 'firstName',
     title: 'Prénom(s) :',
     inputType: 'text',
     labelClass: 'form-label',
@@ -129,6 +129,7 @@ export const registrationElement = [
   {
     id: 'man',
     title: 'Masculin',
+    value: 'Masculin',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -139,6 +140,7 @@ export const registrationElement = [
   {
     id: 'woman',
     title: 'Féminin',
+    value: 'Féminin',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -149,6 +151,7 @@ export const registrationElement = [
   {
     id: 'nobinary',
     title: 'Non binaire',
+    value: 'Non binaire',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -236,14 +239,14 @@ export const connexionElement = [
         divClass: 'mb-3',
       },
 
-      {
+      /* {
         id: 'rememberMeModal',
         title: ' Se souvenir de moi',
         labelClass: 'form-check-label',
         inputClass: 'form-check-input',
         inputType: 'checkbox',
         divClass: 'm-2 form-check',
-      },
+      },*/
     ],
   },
 ];

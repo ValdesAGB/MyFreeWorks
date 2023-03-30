@@ -9,25 +9,30 @@ import Footer from './Footer';
 import Header from './Header';
 import Menu from './Menu';
 import { Route, Routes } from 'react-router-dom';
+import { AuthProvider, CheckPasswordProvider } from '../untils/context';
 //import { routeElement } from '../data';
 
 function App() {
   return (
     <React.Fragment>
-      <Header />
-      <Menu />
-      <Routes>
-        {/*{routeElement.map(({ element, path }) => (
+      <CheckPasswordProvider>
+        <AuthProvider>
+          <Header />
+          <Menu />
+          <Routes>
+            {/*{routeElement.map(({ element, path }) => (
           <Route id={`${element}-0`} path={path} element={<element />} />
         ))}*/}
-        <Route path="/" element={<Home />} />
-        <Route path="/graphisme" element={<Graphisme />} />
-        <Route path="/peinture" element={<Peinture />} />
-        <Route path="/poterie" element={<Poterie />} />
-        <Route path="/photographie" element={<Photographie />} />
-        <Route path="/*" element={<NotFound />} />
-      </Routes>
-      <Footer />
+            <Route path="/" element={<Home />} />
+            <Route path="/graphisme" element={<Graphisme />} />
+            <Route path="/peinture" element={<Peinture />} />
+            <Route path="/poterie" element={<Poterie />} />
+            <Route path="/photographie" element={<Photographie />} />
+            <Route path="/*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </AuthProvider>
+      </CheckPasswordProvider>
     </React.Fragment>
   );
 }
