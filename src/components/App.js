@@ -12,9 +12,11 @@ import { Route, Routes } from 'react-router-dom';
 import {
   AuthProvider,
   CheckPasswordProvider,
+  NewProductProvider,
   ProductProvider,
 } from '../untils/context';
 import ViewMore from './ViewMore';
+import AddProduct from '../pages/AddProduct';
 //import { routeElement } from '../data';
 
 function App() {
@@ -22,25 +24,28 @@ function App() {
     <React.Fragment>
       <CheckPasswordProvider>
         <AuthProvider>
-          <ProductProvider>
-            <>
-              <Header />
-              <Menu />
-              <Routes>
-                {/*{routeElement.map(({ element, path }) => (
+          <NewProductProvider>
+            <ProductProvider>
+              <>
+                <Header />
+                <Menu />
+                <Routes>
+                  {/*{routeElement.map(({ element, path }) => (
           <Route id={`${element}-0`} path={path} element={<element />} />
         ))}*/}
-                <Route path="/" element={<Home />} />
-                <Route path="/graphisme" element={<Graphisme />} />
-                <Route path="/peinture" element={<Peinture />} />
-                <Route path="/poterie" element={<Poterie />} />
-                <Route path="/photographie" element={<Photographie />} />
-                <Route path="/viewmore/:id" element={<ViewMore />} />
-                <Route path="/*" element={<NotFound />} />
-              </Routes>
-              <Footer />
-            </>
-          </ProductProvider>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/newproduct" element={<AddProduct />} />
+                  <Route path="/graphisme" element={<Graphisme />} />
+                  <Route path="/peinture" element={<Peinture />} />
+                  <Route path="/poterie" element={<Poterie />} />
+                  <Route path="/photographie" element={<Photographie />} />
+                  <Route path="/viewmore/:id" element={<ViewMore />} />
+                  <Route path="/*" element={<NotFound />} />
+                </Routes>
+                <Footer />
+              </>
+            </ProductProvider>
+          </NewProductProvider>
         </AuthProvider>
       </CheckPasswordProvider>
     </React.Fragment>

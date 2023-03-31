@@ -71,3 +71,41 @@ export const ProductProvider = ({ children }) => {
     </ProductContext.Provider>
   );
 };
+
+export const NewProductContext = createContext();
+export const NewProductProvider = ({ children }) => {
+  const [name, setName] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [cover, setCover] = useState(null);
+  const [isSold, setIsSold] = useState(false);
+  const [soldPrice, setSoldPrice] = useState(0);
+
+  const newProduct = {
+    name,
+    description,
+    price,
+    cover,
+    isSold,
+    soldPrice,
+  };
+
+  return (
+    <NewProductContext.Provider
+      value={{
+        setName,
+        setDescription,
+        setPrice,
+        setCover,
+        setIsSold,
+        setSoldPrice,
+        isSold,
+        soldPrice,
+        cover,
+        newProduct,
+      }}
+    >
+      {children}
+    </NewProductContext.Provider>
+  );
+};

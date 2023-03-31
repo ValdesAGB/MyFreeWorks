@@ -251,6 +251,60 @@ export const connexionElement = [
   },
 ];
 
+export const addProductElement = [
+  {
+    id: 'nameProd',
+    title: 'Nom :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'descriptionProd',
+    title: 'Description :',
+    inputType: '',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'priceProd',
+    title: 'Prix :',
+    inputType: 'number',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'coverProd',
+    title: 'Image :',
+    placeholder: 'https://...',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'isSold',
+    title: 'En solde .?',
+    name: 'checkitem',
+    inputType: 'checkbox',
+    role: 'switch',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'mb-3 form-check form-switch',
+  },
+  {
+    id: 'soldPriceProd',
+    title: 'Prix de solde :',
+    inputType: 'number',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3 d-none',
+  },
+];
+
 export const menuElement = [
   {
     id: 'acceuil',
