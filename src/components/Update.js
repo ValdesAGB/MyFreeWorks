@@ -1,15 +1,29 @@
 import React, { useContext, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { addProductElement, apiLink } from '../data'
-import { Link } from 'react-router-dom'
 import {
   LoadingContext,
   MessageContext,
   NewProductContext,
+  ProductContext,
 } from '../untils/context'
-import Feedback from './Feedback'
 import { Loader } from '../untils/Loader'
+import Feedback from './Feedback'
 
-function AddProductForm() {
+function Update() {
+  const { id } = useParams()
+  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+
+  const {
+    message,
+    errorMes,
+    codeErr,
+    toggleMessage,
+    toggleErrorMes,
+    toggleCodeErr,
+  } = useContext(MessageContext)
+
+  const { product, toggleProduct } = useContext(ProductContext)
   const {
     setName,
     setDescription,
@@ -22,16 +36,6 @@ function AddProductForm() {
     cover,
     newProduct,
   } = useContext(NewProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
-
-  const {
-    message,
-    errorMes,
-    codeErr,
-    toggleMessage,
-    toggleErrorMes,
-    toggleCodeErr,
-  } = useContext(MessageContext)
 
   const set = (id, event) => {
     switch (id) {
@@ -59,31 +63,114 @@ function AddProductForm() {
     }
   }
 
+  const check = (product, keyIndex) => {
+    if (product) {
+      const firstKey = Object.keys(product)[keyIndex]
+      if (firstKey) {
+        return product[firstKey]
+      }
+    }
+    return 'Error'
+  }
+
+  const data = (id) => {
+    switch (id) {
+      case 'nameProd':
+        return check(product, 1)
+
+      case 'descriptionProd':
+        return check(product, 2)
+
+      case 'coverProd':
+        return check(product, 3)
+      case 'priceProd':
+        return check(product, 4)
+
+      case 'soldPriceProd':
+        return check(product, 6)
+      case 'categorieProd':
+        return check(product, 7)
+      default:
+        return check(product, 5)
+    }
+  }
+
   const upperCaseLetter = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1)
   }
 
   const fetchElements = {
-    fetchPost: {
-      url: `${apiLink}/api/product`,
-      options: {
-        method: 'POST',
-        body: JSON.stringify(newProduct),
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          /*Authorization: `Bearer ${
+    url: `${apiLink}/api/product/${id}`,
+    GEToptions: {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        /*Authorization: `Bearer ${
             userLogin !== null ? userLogin.token : 'Error'
           }`,*/
-        },
+      },
+    },
+
+    PUToptions: {
+      method: 'PUT',
+      body: JSON.stringify(newProduct),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        /*Authorization: `Bearer ${
+            userLogin !== null ? userLogin.token : 'Error'
+          }`,*/
       },
     },
   }
-  // console.log(errorMes)
 
-  const save = (e) => {
+  const getOfFetch = () => {
+    toggleMessage(null)
+    toggleErrorMes(null)
+    toggleCodeErr(null)
+    toggleIsDataLoading(true)
+    fetch(fetchElements.url, fetchElements.GEToptions)
+      .then((promise) => {
+        if (!promise.ok) {
+          throw promise
+        } else {
+          return promise.json()
+        }
+      })
+      .then((prod) => {
+        toggleProduct(prod)
+        setName(prod.name)
+        setDescription(prod.description)
+        setPrice(prod.price)
+        setCover(prod.cover)
+        setIsSold(prod.isSold)
+        setSoldPrice(prod.soldPrice)
+        setCategorie(prod.categorie)
+        toggleIsDataLoading(false)
+      })
+      .catch((error) => {
+        error.json().then((errorMessage) => {
+          toggleErrorMes(errorMessage.error)
+          toggleCodeErr(error.status)
+          toggleIsDataLoading(false)
+        })
+      })
+  }
+
+  useEffect(() => {
+    if (!isSold) {
+      setSoldPrice(0)
+    }
+  }, [isSold])
+
+  useEffect(() => {
+    getOfFetch()
+  }, [])
+
+  const update = (e) => {
     e.preventDefault()
-    fetch(fetchElements.fetchPost.url, fetchElements.fetchPost.options)
+    fetch(fetchElements.url, fetchElements.PUToptions)
       .then((promise) => {
         if (!promise.ok) {
           throw promise
@@ -94,11 +181,6 @@ function AddProductForm() {
       .then((message) => {
         toggleMessage(message)
         toggleIsDataLoading(false)
-        /* setTimeout(() => {
-          window.location.pathname = `user/dashboard/${
-            userLogin && userLogin.userId
-          }`
-        }, 3000)*/
       })
       .catch((error) => {
         error.json().then((errorMessage) => {
@@ -110,16 +192,7 @@ function AddProductForm() {
   }
 
   const close = () => {
-    toggleMessage(null)
-    toggleErrorMes(null)
-    toggleCodeErr(null)
-    setName(null)
-    setDescription(null)
-    setPrice(null)
-    setCover(null)
-    setIsSold(null)
-    setSoldPrice(null)
-    setCategorie(null)
+    getOfFetch()
   }
 
   const button = () => {
@@ -129,34 +202,18 @@ function AddProductForm() {
           className=" btn col-12 col-md-6 text-center mb-2 mb-md-0"
           onClick={() => close()}
         >
-          Nouvel objet.?
+          Modifié à nouveau ?
         </span>
 
-        <Link to="/" className="text-center col-12 col-md-6">
-          Accueil
+        <Link
+          to={`/view/product/${id}`}
+          className="text-center col-12 col-md-6"
+        >
+          Voir le produit modifé
         </Link>
       </span>
     )
   }
-
-  useEffect(() => {
-    toggleMessage(null)
-    toggleErrorMes(null)
-    toggleCodeErr(null)
-    setName(null)
-    setDescription(null)
-    setPrice(null)
-    setCover(null)
-    setIsSold(false)
-    setSoldPrice(0)
-    setCategorie('autres')
-  }, [])
-
-  useEffect(() => {
-    if (!isSold) {
-      setSoldPrice(0)
-    }
-  }, [isSold])
 
   return (
     <React.Fragment>
@@ -178,8 +235,6 @@ function AddProductForm() {
               divClass,
               selectClass,
               placeholder,
-              option,
-              value,
               option1,
               option2,
               option3,
@@ -204,6 +259,7 @@ function AddProductForm() {
                       className={inputClass}
                       id={id}
                       aria-describedby="emailHelp"
+                      defaultValue={data(id)}
                       onChange={(e) => set(id, e)}
                     />
                   )}
@@ -220,6 +276,7 @@ function AddProductForm() {
                       className={inputClass}
                       id={id}
                       aria-describedby="emailHelp"
+                      defaultChecked={data(id)}
                       onChange={(e) => set(id, e)}
                     />
                   )}
@@ -227,6 +284,7 @@ function AddProductForm() {
                   {inputType === '' && (
                     <textarea
                       className={inputClass}
+                      defaultValue={data(id)}
                       onChange={(e) => set(id, e)}
                     ></textarea>
                   )}
@@ -235,9 +293,9 @@ function AddProductForm() {
                     <select
                       className={selectClass}
                       aria-label="Default select example"
+                      defaultValue={data(id)}
                       onChange={(e) => set(id, e)}
                     >
-                      <option value={value}>{option}</option>
                       <option value={option1}>
                         {upperCaseLetter(option1)}
                       </option>
@@ -267,9 +325,9 @@ function AddProductForm() {
               ? null
               : 'disabled'
           }*/`}
-            onClick={(e) => save(e)}
+            onClick={(e) => update(e)}
           >
-            Enrégistrer
+            Modifier
           </button>
         </form>
       )}
@@ -277,4 +335,4 @@ function AddProductForm() {
   )
 }
 
-export default AddProductForm
+export default Update

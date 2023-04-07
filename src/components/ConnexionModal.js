@@ -1,8 +1,24 @@
-import React from 'react';
-import { colors } from '../untils';
-import ConnexionForm from './ConnexionForm';
+import React, { useContext, useEffect } from 'react'
+import { colors } from '../untils'
+import ConnexionForm from './ConnexionForm'
+import { CheckPasswordContext } from '../untils/context'
 
 function ConnexionModal({ titleName, mapValeur }) {
+  const { toggleIconeState } = useContext(CheckPasswordContext)
+
+  const handleHideModal = () => {
+    toggleIconeState(false)
+  }
+
+  useEffect(() => {
+    const modalEl = document.querySelector('#connexionModal')
+
+    modalEl.addEventListener('hidden.bs.modal', handleHideModal)
+
+    return () => {
+      modalEl.removeEventListener('hidden.bs.modal', handleHideModal)
+    }
+  }, [])
   return (
     <div className="col-lg-7 col-6">
       <button
@@ -45,7 +61,7 @@ function ConnexionModal({ titleName, mapValeur }) {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default ConnexionModal;
+export default ConnexionModal

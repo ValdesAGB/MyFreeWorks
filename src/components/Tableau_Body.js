@@ -1,15 +1,15 @@
 import React, { useContext, useEffect } from 'react'
-import View from '../../components/View'
-import { apiLink, emptyCategorie } from '../../data'
+import { Link } from 'react-router-dom'
 import {
   LoadingContext,
   MessageContext,
   ProductContext,
-} from '../../untils/context'
-import { Loader } from '../../untils/Loader'
-import Feedback from '../../components/Feedback'
+} from '../untils/context'
+import { apiLink, emptyDashboard } from '../data'
+import { Loader } from '../untils/Loader'
+import Feedback from './Feedback'
 
-function Graphisme() {
+function Tableau_Body() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
   const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
   const {
@@ -21,10 +21,14 @@ function Graphisme() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
-  const categorie = 'photographie'
+  useEffect(() => {
+    toggleMessage(null)
+    toggleErrorMes(null)
+    toggleCodeErr(null)
+  }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product/categorie/${categorie}`,
+    fetchUrl: `${apiLink}/api/product`,
     fetchOptions: {
       method: 'GET',
       headers: {
@@ -40,9 +44,6 @@ function Graphisme() {
   useEffect(() => {
     toggleAllProducts(null)
     toggleIsDataLoading(true)
-    toggleMessage(null)
-    toggleErrorMes(null)
-    toggleCodeErr(null)
     fetch(fetchElements.fetchUrl, fetchElements.fetchOptions)
       .then((promise) => {
         if (!promise.ok) {
@@ -65,44 +66,35 @@ function Graphisme() {
   }, [])
 
   return (
-    <section className="container my-2">
-      <div className="row">
+    <React.Fragment>
+      <tbody className="table-group-divider row">
         {isDataLoading ? (
           <Loader />
         ) : message || errorMes ? (
           <Feedback />
         ) : allProducts && allProducts.length === 0 ? (
-          emptyCategorie
+          emptyDashboard
         ) : (
           allProducts &&
-          allProducts.map(
-            ({
-              _id,
-              name,
-              cover,
-              isSold,
-              price,
-              soldPrice,
-              categorie,
-              description,
-            }) => (
-              <View
-                key={_id}
-                id={_id}
-                name={name}
-                cover={cover}
-                isSold={isSold}
-                price={price}
-                soldPrice={soldPrice}
-                to={`/${categorie}`}
-                description={description}
-              />
-            )
-          )
+          allProducts.map(({ _id, name, isSold, price }) => (
+            <tr key={_id} className="row text-center">
+              <td className="col-3">{name.slice(0, 6) + '...'}</td>
+              <td className="col-3">{price}</td>
+              <td className="col-3">{isSold ? 'Oui' : 'Non'}</td>
+              <td className="col-3">
+                <Link to={`/view/product/${_id}`}>
+                  <i
+                    className="fs-5 text-black bi bi-eye"
+                    title="Voir le produit"
+                  ></i>
+                </Link>
+              </td>
+            </tr>
+          ))
         )}
-      </div>
-    </section>
+      </tbody>
+    </React.Fragment>
   )
 }
 
-export default Graphisme
+export default Tableau_Body

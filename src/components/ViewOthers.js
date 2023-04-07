@@ -1,28 +1,22 @@
-import React, { useContext } from 'react';
-import Button from './Button';
-import PropTypes from 'prop-types';
-import { police } from '../untils';
-import { Link } from 'react-router-dom';
-import { ProductContext } from '../untils/context';
+import React from 'react'
+import Button from './Button'
+import PropTypes from 'prop-types'
+import { police } from '../untils'
+import { Link } from 'react-router-dom'
 
-function ViewOthers({ id, isSold, soldPrice, price, cover, name, PriceSpan }) {
-  const { toggleProduct } = useContext(ProductContext);
+function ViewOthers({
+  id,
+  isSold,
+  soldPrice,
+  price,
+  cover,
+  name,
+  PriceSpan,
+  description,
+}) {
   return (
     <div className="m-3">
-      <Link
-        to={`/viewmore/${id}`}
-        className="text-dark text-decoration-none"
-        onClick={() =>
-          toggleProduct({
-            id,
-            isSold,
-            soldPrice,
-            price,
-            cover,
-            name,
-          })
-        }
-      >
+      <Link to={`/viewmore/${id}`} className="text-dark text-decoration-none">
         <>
           {isSold && soldPrice !== 0 ? (
             <PriceSpan className="fw-light mt-2 text-center">
@@ -57,7 +51,7 @@ function ViewOthers({ id, isSold, soldPrice, price, cover, name, PriceSpan }) {
       </Link>
       <Button name={name} price={price} soldPrice={soldPrice} />
     </div>
-  );
+  )
 }
 
 ViewOthers.propTypes = {
@@ -67,11 +61,11 @@ ViewOthers.propTypes = {
   price: PropTypes.number.isRequired,
   soldPrice: PropTypes.number,
   PriceSpan: PropTypes.object.isRequired,
-};
+}
 
 ViewOthers.defaultProps = {
   soldPrice: 0,
   isSold: false,
   name: '',
-};
-export default ViewOthers;
+}
+export default ViewOthers

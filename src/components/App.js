@@ -1,55 +1,83 @@
-import React from 'react';
-import NotFound from '../pages/404';
-import Graphisme from '../pages/Graphisme';
-import Home from '../pages/Home';
-import Peinture from '../pages/Peinture';
-import Photographie from '../pages/Photographie';
-import Poterie from '../pages/Poterie';
-import Footer from './Footer';
-import Header from './Header';
-import Menu from './Menu';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react'
+import NotFound from '../pages/404'
+import Graphisme from '../pages/Graphisme'
+import Home from '../pages/Home'
+import Peinture from '../pages/Peinture'
+import Photographie from '../pages/Photographie'
+import Poterie from '../pages/Poterie'
+import Footer from './Footer'
+import Header from './Header'
+import Menu from './Menu'
+import { Route, Routes } from 'react-router-dom'
 import {
   AuthProvider,
   CheckPasswordProvider,
+  LoadingProvider,
+  MessageProvider,
   NewProductProvider,
   ProductProvider,
-} from '../untils/context';
-import ViewMore from './ViewMore';
-import AddProduct from '../pages/AddProduct';
-//import { routeElement } from '../data';
+  UserProvider,
+} from '../untils/context'
+import ViewMore from './ViewMore'
+import AddProduct from '../pages/AddProduct'
+import { createGlobalStyle } from 'styled-components'
+import { police } from '../untils'
+import Others from '../pages/Others'
+import Dashboard from '../pages/Dashboard'
+import Owner from '../pages/Owner Product'
+import Modify from '../pages/Modify'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: ${police.ff1};
+  }
+`
 
 function App() {
   return (
     <React.Fragment>
-      <CheckPasswordProvider>
-        <AuthProvider>
-          <NewProductProvider>
-            <ProductProvider>
-              <>
-                <Header />
-                <Menu />
-                <Routes>
-                  {/*{routeElement.map(({ element, path }) => (
-          <Route id={`${element}-0`} path={path} element={<element />} />
-        ))}*/}
-                  <Route path="/" element={<Home />} />
-                  <Route path="/newproduct" element={<AddProduct />} />
-                  <Route path="/graphisme" element={<Graphisme />} />
-                  <Route path="/peinture" element={<Peinture />} />
-                  <Route path="/poterie" element={<Poterie />} />
-                  <Route path="/photographie" element={<Photographie />} />
-                  <Route path="/viewmore/:id" element={<ViewMore />} />
-                  <Route path="/*" element={<NotFound />} />
-                </Routes>
-                <Footer />
-              </>
-            </ProductProvider>
-          </NewProductProvider>
-        </AuthProvider>
-      </CheckPasswordProvider>
+      <GlobalStyle />
+      <UserProvider>
+        <LoadingProvider>
+          <MessageProvider>
+            <CheckPasswordProvider>
+              <AuthProvider>
+                <NewProductProvider>
+                  <ProductProvider>
+                    <>
+                      <Header />
+                      <Menu />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/newproduct" element={<AddProduct />} />
+                        <Route path="/graphisme" element={<Graphisme />} />
+                        <Route path="/peinture" element={<Peinture />} />
+                        <Route path="/poterie" element={<Poterie />} />
+                        <Route path="/autres" element={<Others />} />
+                        <Route
+                          path="/photographie"
+                          element={<Photographie />}
+                        />
+                        <Route path="/view/product/:id" element={<Owner />} />
+                        <Route path="/viewmore/:id" element={<ViewMore />} />
+                        <Route
+                          path="/update/product/:id"
+                          element={<Modify />}
+                        />
+                        <Route path="/dashboard/:id" element={<Dashboard />} />
+                        <Route path="/*" element={<NotFound />} />
+                      </Routes>
+                      <Footer />
+                    </>
+                  </ProductProvider>
+                </NewProductProvider>
+              </AuthProvider>
+            </CheckPasswordProvider>
+          </MessageProvider>
+        </LoadingProvider>
+      </UserProvider>
     </React.Fragment>
-  );
+  )
 }
 
-export default App;
+export default App

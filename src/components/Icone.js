@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { CheckPasswordContext } from '../untils/context';
+import React, { useContext } from 'react'
+import { CheckPasswordContext } from '../untils/context'
 
 function Icone({ id }) {
-  const { toggleIconeState } = useContext(CheckPasswordContext);
+  const { iconeState, toggleIconeState } = useContext(CheckPasswordContext)
   return (
     <React.Fragment>
       <div className="form-check my-3">
@@ -10,6 +10,7 @@ function Icone({ id }) {
           className="form-check-input"
           type="checkbox"
           id={id}
+          checked={iconeState !== null && iconeState}
           onClick={(e) => toggleIconeState(e.target.checked)}
         />
         <label className="form-check-label" htmlFor={id}>
@@ -17,7 +18,7 @@ function Icone({ id }) {
         </label>
       </div>
     </React.Fragment>
-  );
+  )
 }
 
-export default Icone;
+export default Icone

@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { siteName } from '../data';
-import { colors, police } from '../untils';
-import Identification from './Identification';
-import Search from './Search';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { siteName } from '../data'
+import { colors, police } from '../untils'
+import Identification from './Identification'
+import Search from './Search'
 
 function Header() {
   return (
@@ -25,12 +25,11 @@ function Header() {
 
         <div className="col-5 col-lg-8 row">
           <Search />
-
           <Identification />
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default Header;
+export default Header

@@ -1,38 +1,39 @@
-import graphisme1 from '../assets/graphisme/graphisme1.jpg';
-import graphisme2 from '../assets/graphisme/graphisme2.jpg';
-import graphisme3 from '../assets/graphisme/graphisme3.jpg';
-import graphisme4 from '../assets/graphisme/graphisme4.png';
-import graphisme5 from '../assets/graphisme/graphisme5.jpg';
-import graphisme6 from '../assets/graphisme/graphisme6.jpeg';
-import graphisme7 from '../assets/graphisme/graphisme7.jpg';
-import graphisme8 from '../assets/graphisme/graphisme8.jpg';
-import graphisme9 from '../assets/graphisme/graphisme9.jpg';
-import graphisme10 from '../assets/graphisme/graphisme10.jpg';
-import graphisme11 from '../assets/graphisme/graphisme11.jpg';
-import graphisme12 from '../assets/graphisme/graphisme12.jpg';
-import peinture1 from '../assets/peinture/peinture1.jpg';
-import peinture2 from '../assets/peinture/peinture2.jpg';
-import peinture3 from '../assets/peinture/peinture3.jpg';
-import peinture4 from '../assets/peinture/peinture4.jpg';
-import peinture5 from '../assets/peinture/peinture5.jpg';
-import peinture6 from '../assets/peinture/peinture6.jpg';
-import peinture7 from '../assets/peinture/peinture7.jpg';
-import peinture8 from '../assets/peinture/peinture8.jpg';
-import photographie1 from '../assets/photographie/photographie1.jpg';
-import photographie2 from '../assets/photographie/photographie2.jpeg';
-import photographie3 from '../assets/photographie/photographie3.jpg';
-import photographie4 from '../assets/photographie/photographie4.jpg';
-import photographie5 from '../assets/photographie/photographie5.jpg';
-import photographie6 from '../assets/photographie/photographie6.jpg';
-import photographie7 from '../assets/photographie/photographie7.jpg';
-import photographie8 from '../assets/photographie/photographie8.jpg';
-import photographie9 from '../assets/photographie/photographie9.jpg';
-import photographie10 from '../assets/photographie/photographie10.jpg';
-import poterie1 from '../assets/poterie/poterie1.jpg';
-import poterie2 from '../assets/poterie/poterie2.jpg';
-import poterie3 from '../assets/poterie/poterie3.jpg';
-import poterie4 from '../assets/poterie/poterie4.jpg';
-import poterie5 from '../assets/poterie/poterie5.jpg';
+import graphisme1 from '../assets/graphisme/graphisme1.jpg'
+import graphisme2 from '../assets/graphisme/graphisme2.jpg'
+import graphisme3 from '../assets/graphisme/graphisme3.jpg'
+import graphisme4 from '../assets/graphisme/graphisme4.png'
+import graphisme5 from '../assets/graphisme/graphisme5.jpg'
+import graphisme6 from '../assets/graphisme/graphisme6.jpeg'
+import graphisme7 from '../assets/graphisme/graphisme7.jpg'
+import graphisme8 from '../assets/graphisme/graphisme8.jpg'
+import graphisme9 from '../assets/graphisme/graphisme9.jpg'
+import graphisme10 from '../assets/graphisme/graphisme10.jpg'
+import graphisme11 from '../assets/graphisme/graphisme11.jpg'
+import graphisme12 from '../assets/graphisme/graphisme12.jpg'
+import peinture1 from '../assets/peinture/peinture1.jpg'
+import peinture2 from '../assets/peinture/peinture2.jpg'
+import peinture3 from '../assets/peinture/peinture3.jpg'
+import peinture4 from '../assets/peinture/peinture4.jpg'
+import peinture5 from '../assets/peinture/peinture5.jpg'
+import peinture6 from '../assets/peinture/peinture6.jpg'
+import peinture7 from '../assets/peinture/peinture7.jpg'
+import peinture8 from '../assets/peinture/peinture8.jpg'
+import photographie1 from '../assets/photographie/photographie1.jpg'
+import photographie2 from '../assets/photographie/photographie2.jpeg'
+import photographie3 from '../assets/photographie/photographie3.jpg'
+import photographie4 from '../assets/photographie/photographie4.jpg'
+import photographie5 from '../assets/photographie/photographie5.jpg'
+import photographie6 from '../assets/photographie/photographie6.jpg'
+import photographie7 from '../assets/photographie/photographie7.jpg'
+import photographie8 from '../assets/photographie/photographie8.jpg'
+import photographie9 from '../assets/photographie/photographie9.jpg'
+import photographie10 from '../assets/photographie/photographie10.jpg'
+import poterie1 from '../assets/poterie/poterie1.jpg'
+import poterie2 from '../assets/poterie/poterie2.jpg'
+import poterie3 from '../assets/poterie/poterie3.jpg'
+import poterie4 from '../assets/poterie/poterie4.jpg'
+import poterie5 from '../assets/poterie/poterie5.jpg'
+import { Link } from 'react-router-dom'
 /*import Home from '../pages/Home';
 import NotFound from '../pages/404';
 import Graphisme from '../pages/Graphisme';
@@ -41,9 +42,9 @@ import Photographie from '../pages/Photographie';
 import Poterie from '../pages/Poterie';*/
 
 function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min)) + min
 }
 
 /*function getDifferentRamdonInt(){
@@ -87,7 +88,7 @@ export const routeElement = [
   },
 ];*/
 
-export const siteName = 'MyFreeWorks';
+export const siteName = 'MyFreeWorks'
 
 export const registrationElement = [
   {
@@ -185,7 +186,7 @@ export const registrationElement = [
     inputClass: 'form-control',
     divClass: 'mb-3',
   },
-];
+]
 
 export const connexionElement = [
   {
@@ -249,7 +250,7 @@ export const connexionElement = [
       },*/
     ],
   },
-];
+]
 
 export const addProductElement = [
   {
@@ -301,9 +302,22 @@ export const addProductElement = [
     inputType: 'number',
     labelClass: 'form-label',
     inputClass: 'form-control',
-    divClass: 'mb-3 d-none',
+    divClass: 'd-none',
   },
-];
+  {
+    id: 'categorieProd',
+    divClass: 'mb-3',
+    title: 'Sélectionner la catégorie de votre produit :',
+    selectClass: 'form-select my-2',
+    option: '---',
+    value: 'autres',
+    option1: 'graphisme',
+    option2: 'peinture',
+    option3: 'poterie',
+    option4: 'photographie',
+    option5: 'autres',
+  },
+]
 
 export const menuElement = [
   {
@@ -336,7 +350,13 @@ export const menuElement = [
     to: '/photographie',
     name: 'Photographie',
   },
-];
+
+  {
+    id: 'others',
+    to: '/autres',
+    name: 'Autres',
+  },
+]
 
 export const networks = [
   {
@@ -353,7 +373,7 @@ export const networks = [
     id: 'LinkedIn',
     icone: 'fs-4 text-white fa-brands fa-linkedin',
   },
-];
+]
 
 export const graphismeElement = [
   {
@@ -475,7 +495,7 @@ export const graphismeElement = [
     soldPrice: 0,
     to: '/graphisme',
   },
-];
+]
 
 export const peintureElement = [
   {
@@ -557,7 +577,7 @@ export const peintureElement = [
     soldPrice: 0,
     to: '/peinture',
   },
-];
+]
 
 export const poterieElement = [
   {
@@ -609,7 +629,7 @@ export const poterieElement = [
     soldPrice: 0,
     to: '/poterie',
   },
-];
+]
 
 export const photographieElement = [
   {
@@ -701,18 +721,160 @@ export const photographieElement = [
     isSold: false,
     to: '/photographie',
   },
-];
+]
 
 export const homeElement = [
   peintureElement[getRandomInt(0, peintureElement.length)],
   graphismeElement[getRandomInt(0, graphismeElement.length)],
   photographieElement[getRandomInt(0, photographieElement.length)],
   poterieElement[getRandomInt(0, poterieElement.length)],
-];
+]
 
-export const date = new Date();
+export const date = new Date()
 
 export const messageAlert =
-  "Vous serez rediriger vers le profil ComeUp du concepteur de ce site où vous pourrez discuter avec lui de vos besoins ou projets. Ne vous en faite pas, c'est totalement gratuit 😁.";
+  "Vous serez rediriger vers le profil ComeUp du concepteur de ce site où vous pourrez discuter avec lui de vos besoins ou projets. Ne vous en faite pas, c'est totalement gratuit 😁."
 
-export const comeUpLink = 'https://comeup.com/profil/valdesagb';
+export const comeUpLink = 'https://comeup.com/profil/valdesagb'
+
+export const apiLink = 'http://localhost:3001'
+
+export const passwordAdvice = [
+  {
+    id: '0',
+    title: '6 caractères',
+  },
+  {
+    id: '1',
+    title: 'Une lettre majuscule',
+  },
+  {
+    id: '2',
+    title: 'Un chiffre',
+  },
+  {
+    id: '3',
+    title: 'Un caractère spécial',
+  },
+]
+
+export const userIcone = {
+  disconnect: (
+    <i
+      className={`navbar-toggler text-white fs-3 align-items-center text-center border border-0 bi bi-person-fill`}
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+      aria-controls="navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    ></i>
+  ),
+  connect: (
+    <div className="bg-white text-center shadow bg-body-tertiary rounded">
+      <span className="text-dark p-3 mb-5  ">Name</span>
+    </div>
+  ),
+}
+
+export const emptyCategorie = (
+  <div className="text-center my-5">
+    Aucun produit n'est disponible actuellement. Soyez le premier à{' '}
+    <Link to="/newproduct">en créer</Link> dans cette catégorie.
+  </div>
+)
+
+export const homeEmpty = (
+  <div className="text-center my-5">
+    Aucun produit n'est disponible pour le moment. Soyez le premier à{' '}
+    <Link to="/newproduct">en créer</Link> .
+  </div>
+)
+
+export const emptyDashboard = (
+  <td className="text-center my-5">
+    Vous n'avez aucun produit actuellement.{' '}
+    <Link to="/newproduct">Ajoutez-en</Link> un dès maintenant
+  </td>
+)
+
+export const dashboard_md_header = [
+  {
+    id: 'id',
+    name: '#',
+  },
+
+  {
+    id: 'name',
+    name: 'Nom',
+  },
+
+  {
+    id: 'description',
+    name: 'Descrip..',
+    title: 'Description',
+  },
+
+  {
+    id: 'cover',
+    name: 'Image',
+  },
+
+  {
+    id: 'price',
+    name: 'Prix(€)',
+  },
+
+  {
+    id: 'inSold',
+    name: 'Solde ?',
+  },
+
+  {
+    id: 'soldPrice',
+    name: 'PdS(€)',
+    title: 'Prix de solde',
+  },
+
+  {
+    id: 'categorie',
+    name: 'Catégorie',
+  },
+
+  {
+    id: 'created_At',
+    name: 'Ajouté le :',
+  },
+
+  {
+    id: 'updated_At',
+    name: 'MàJ',
+    title: 'Mise à jour le :',
+  },
+
+  {
+    id: 'action',
+    name: 'Actions',
+  },
+]
+
+export const dashboard_header = [
+  {
+    id: 'name',
+    title: 'Nom',
+  },
+
+  {
+    id: 'price',
+    title: 'Prix(€)',
+  },
+
+  {
+    id: 'inSold',
+    title: 'Solde ?',
+  },
+
+  {
+    id: 'action',
+    title: 'Actions',
+  },
+]

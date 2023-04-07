@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { registrationElement } from '../data';
 import { colors } from '../untils';
 import RegistrationForm from './RegistrationForm';
+import { CheckPasswordContext } from '../untils/context';
 
 function Registration() {
   let titleName = 'Inscription';
+  const { toggleIconeState } = useContext(CheckPasswordContext);
+
+  const handleHideModal = () => {
+    toggleIconeState(false);
+  };
+
+  useEffect(() => {
+    const modalEl = document.querySelector('#registrationModal');
+
+    modalEl.addEventListener('hidden.bs.modal', handleHideModal);
+
+    return () => {
+      modalEl.removeEventListener('hidden.bs.modal', handleHideModal);
+    };
+  }, []);
   return (
     <div className="col-lg-5 col">
       <button
@@ -15,14 +31,14 @@ function Registration() {
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target="#registrationModal"
       >
         {titleName}
       </button>
 
       <div
         className="modal fade text-black"
-        id="exampleModal"
+        id="registrationModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

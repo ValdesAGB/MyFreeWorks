@@ -21,7 +21,7 @@ function Graphisme() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
-  const categorie = 'photographie'
+  const categorie = 'autres'
 
   const fetchElements = {
     fetchUrl: `${apiLink}/api/product/categorie/${categorie}`,
