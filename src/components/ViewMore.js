@@ -12,7 +12,12 @@ import Feedback from './Feedback'
 function ViewMore() {
   const { id } = useParams()
   const { product, toggleProduct } = useContext(ProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -78,14 +83,14 @@ function ViewMore() {
 
   return (
     <React.Fragment>
-      {isDataLoading ? (
+      {isDataLoading && !isSignComplete && !isLoginComplete ? (
         <Loader />
-      ) : message || errorMes ? (
+      ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
         <Feedback />
       ) : (
         <div className="container my-2">
           <div className="row my-2 align-items-center">
-            <span className="col">{check(product, 2)}</span>
+            <span className="col">{check(product, 1)}</span>
             {product && product.isSold ? (
               <>
                 <span className="col  text-end">

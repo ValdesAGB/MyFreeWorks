@@ -5,6 +5,7 @@ import {
   LoadingContext,
   MessageContext,
   NewProductContext,
+  UserContext,
 } from '../untils/context'
 import Feedback from './Feedback'
 import { Loader } from '../untils/Loader'
@@ -28,6 +29,8 @@ function AddProductForm() {
     isSignComplete,
     isLoginComplete,
   } = useContext(LoadingContext)
+
+  const { userId } = useContext(UserContext)
 
   const {
     message,
@@ -84,7 +87,6 @@ function AddProductForm() {
       },
     },
   }
-  // console.log(errorMes)
 
   const save = (e) => {
     e.preventDefault()
@@ -100,11 +102,6 @@ function AddProductForm() {
       .then((message) => {
         toggleMessage(message)
         toggleIsDataLoading(false)
-        /* setTimeout(() => {
-          window.location.pathname = `user/dashboard/${
-            userLogin && userLogin.userId
-          }`
-        }, 3000)*/
       })
       .catch((error) => {
         error.json().then((errorMessage) => {
@@ -138,8 +135,11 @@ function AddProductForm() {
           Nouvel objet.?
         </span>
 
-        <Link to="/" className="text-center col-12 col-md-6">
-          Accueil
+        <Link
+          to={`/dashboard/${userId.userId}`}
+          className="text-center col-12 col-md-6"
+        >
+          Tableau de board
         </Link>
       </span>
     )

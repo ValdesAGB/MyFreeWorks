@@ -1,8 +1,10 @@
-import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { UserContext } from '../untils/context'
 
 function BoardHeader() {
-  const { id } = useParams()
+  const { userId } = useContext(UserContext)
+
   return (
     <React.Fragment>
       {/*<div className="my-4">
@@ -18,7 +20,7 @@ function BoardHeader() {
             </div>*/}
 
       <h4 className=" fw-light justify-content-end d-none d-md-flex">
-        Bonjour {id}
+        Bonjour {userId ? userId.userId : null}
       </h4>
       <div className="my-4 row  align-items-center">
         <div className="col-8">

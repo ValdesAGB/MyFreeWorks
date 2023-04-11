@@ -192,13 +192,15 @@ export const MessageProvider = ({ children }) => {
 
 export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null)
-  const toggleUser = (use) => {
-    setUser(use)
-  }
+  const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
+    const decodedUserInfos = decoded('userInfos')
+    if (decodedUserInfos) {
+      setUserId(decodedUserInfos)
+    }
+  }, [])
   return (
-    <UserContext.Provider value={{ user, toggleUser }}>
-      {children}
-    </UserContext.Provider>
+    <UserContext.Provider value={{ userId }}>{children}</UserContext.Provider>
   )
 }

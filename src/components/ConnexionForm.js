@@ -6,10 +6,11 @@ import {
   MessageContext,
 } from '../untils/context'
 import Icone from './Icone'
-import { apiUserLink } from '../data'
+import { apiUserLink, decoded, encoded } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 import { Link } from 'react-router-dom'
+import Cookies from 'js-cookie'
 
 function ConnexionForm({ mapElement }) {
   const { iconeState } = useContext(CheckPasswordContext)
@@ -62,6 +63,7 @@ function ConnexionForm({ mapElement }) {
         }
       })
       .then((message) => {
+        Cookies.set('userInfos', encoded(message))
         toggleMessage(message)
         toggleIsDataLoading(false)
         setTimeout(() => {
