@@ -1,4 +1,5 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
+import { decoded } from '../../data'
 
 export const CheckPasswordContext = createContext()
 export const CheckPasswordProvider = ({ children }) => {
@@ -89,6 +90,14 @@ export const NewProductProvider = ({ children }) => {
   const [isSold, setIsSold] = useState(false)
   const [soldPrice, setSoldPrice] = useState(0)
   const [categorie, setCategorie] = useState('autres')
+  const [userId, setUserId] = useState(null)
+
+  useEffect(() => {
+    const decodedUserInfos = decoded('userInfos')
+    if (decodedUserInfos) {
+      setUserId(decodedUserInfos.userId)
+    }
+  }, [])
 
   const newProduct = {
     name,
@@ -98,6 +107,7 @@ export const NewProductProvider = ({ children }) => {
     isSold,
     soldPrice,
     categorie,
+    userId,
   }
 
   return (
@@ -128,8 +138,19 @@ export const LoadingProvider = ({ children }) => {
     setIsDataLoading(load)
   }
 
+  const [isSignComplete, setIsSignComplete] = useState(false)
+  const [isLoginComplete, setIsLoginComplete] = useState(false)
   return (
-    <LoadingContext.Provider value={{ isDataLoading, toggleIsDataLoading }}>
+    <LoadingContext.Provider
+      value={{
+        isDataLoading,
+        toggleIsDataLoading,
+        isSignComplete,
+        setIsSignComplete,
+        isLoginComplete,
+        setIsLoginComplete,
+      }}
+    >
       {children}
     </LoadingContext.Provider>
   )

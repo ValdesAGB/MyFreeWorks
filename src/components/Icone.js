@@ -11,7 +11,7 @@ function Icone({ id }) {
           type="checkbox"
           id={id}
           checked={iconeState !== null && iconeState}
-          onClick={(e) => toggleIconeState(e.target.checked)}
+          onChange={(e) => toggleIconeState(e.target.checked)}
         />
         <label className="form-check-label" htmlFor={id}>
           Afficher le mot de passe

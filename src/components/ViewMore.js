@@ -5,7 +5,7 @@ import {
   MessageContext,
   ProductContext,
 } from '../untils/context'
-import { apiLink } from '../data'
+import { apiProductLink } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 
@@ -29,7 +29,7 @@ function ViewMore() {
   }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product/${id}`,
+    fetchUrl: `${apiProductLink}/${id}`,
     fetchOptions: {
       method: 'GET',
       headers: {

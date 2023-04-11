@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { addProductElement, apiLink } from '../data'
+import { addProductElement, apiProductLink } from '../data'
 import {
   LoadingContext,
   MessageContext,
@@ -12,7 +12,12 @@ import Feedback from './Feedback'
 
 function Update() {
   const { id } = useParams()
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
 
   const {
     message,
@@ -100,7 +105,7 @@ function Update() {
   }
 
   const fetchElements = {
-    url: `${apiLink}/api/product/${id}`,
+    url: `${apiProductLink}/${id}`,
     GEToptions: {
       method: 'GET',
       headers: {
@@ -217,9 +222,9 @@ function Update() {
 
   return (
     <React.Fragment>
-      {isDataLoading ? (
+      {isDataLoading && !isSignComplete && !isLoginComplete ? (
         <Loader />
-      ) : message || errorMes ? (
+      ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
         <Feedback button={button()} />
       ) : (
         <form className="col-12 col-sm-10 col-md-8 col-lg-6">

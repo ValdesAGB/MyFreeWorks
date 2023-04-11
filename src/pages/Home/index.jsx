@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import View from '../../components/View'
-import { apiLink, homeEmpty } from '../../data'
+import { apiProductLink, homeEmpty } from '../../data'
 import {
   LoadingContext,
   MessageContext,
@@ -11,7 +11,12 @@ import Feedback from '../../components/Feedback'
 
 function Home() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -28,7 +33,7 @@ function Home() {
   }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product`,
+    fetchUrl: `${apiProductLink}`,
     fetchOptions: {
       method: 'GET',
       headers: {
@@ -67,9 +72,9 @@ function Home() {
   return (
     <section className="container my-2">
       <div className="row">
-        {isDataLoading ? (
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
           <Loader />
-        ) : message || errorMes ? (
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
         ) : allProducts ? (
           allProducts.map(

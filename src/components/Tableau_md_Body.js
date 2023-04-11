@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { apiLink, emptyDashboard } from '../data'
+import { apiProductLink, emptyDashboard } from '../data'
 import {
   LoadingContext,
   MessageContext,
@@ -11,7 +11,12 @@ import Feedback from './Feedback'
 
 function Tableau_md_Body() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -28,7 +33,7 @@ function Tableau_md_Body() {
   }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product`,
+    fetchUrl: `${apiProductLink}`,
     fetchOptions: {
       method: 'GET',
       headers: {
@@ -73,13 +78,12 @@ function Tableau_md_Body() {
 
     return modifiedCover
   }
-
   return (
     <React.Fragment>
       <tbody className="table-group-divider row ">
-        {isDataLoading ? (
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
           <Loader />
-        ) : message || errorMes ? (
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
         ) : allProducts && allProducts.length === 0 ? (
           emptyDashboard

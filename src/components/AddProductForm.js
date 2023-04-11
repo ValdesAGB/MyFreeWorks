@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { addProductElement, apiLink } from '../data'
+import { addProductElement, apiProductLink } from '../data'
 import { Link } from 'react-router-dom'
 import {
   LoadingContext,
@@ -22,7 +22,12 @@ function AddProductForm() {
     cover,
     newProduct,
   } = useContext(NewProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
 
   const {
     message,
@@ -65,7 +70,7 @@ function AddProductForm() {
 
   const fetchElements = {
     fetchPost: {
-      url: `${apiLink}/api/product`,
+      url: `${apiProductLink}`,
       options: {
         method: 'POST',
         body: JSON.stringify(newProduct),
@@ -83,6 +88,7 @@ function AddProductForm() {
 
   const save = (e) => {
     e.preventDefault()
+    toggleIsDataLoading(true)
     fetch(fetchElements.fetchPost.url, fetchElements.fetchPost.options)
       .then((promise) => {
         if (!promise.ok) {
@@ -160,9 +166,9 @@ function AddProductForm() {
 
   return (
     <React.Fragment>
-      {isDataLoading ? (
+      {isDataLoading && !isSignComplete && !isLoginComplete ? (
         <Loader />
-      ) : message || errorMes ? (
+      ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
         <Feedback button={button()} />
       ) : (
         <form className="col-12 col-sm-10 col-md-8 col-lg-6">

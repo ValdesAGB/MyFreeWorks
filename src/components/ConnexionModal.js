@@ -1,13 +1,30 @@
 import React, { useContext, useEffect } from 'react'
 import { colors } from '../untils'
 import ConnexionForm from './ConnexionForm'
-import { CheckPasswordContext } from '../untils/context'
+import {
+  CheckPasswordContext,
+  LoadingContext,
+  MessageContext,
+} from '../untils/context'
 
 function ConnexionModal({ titleName, mapValeur }) {
   const { toggleIconeState } = useContext(CheckPasswordContext)
+  const { setIsLoginComplete } = useContext(LoadingContext)
+  const {
+    message,
+    errorMes,
+    codeErr,
+    toggleMessage,
+    toggleErrorMes,
+    toggleCodeErr,
+  } = useContext(MessageContext)
 
   const handleHideModal = () => {
     toggleIconeState(false)
+    toggleIconeState(false)
+    toggleMessage(null)
+    toggleErrorMes(null)
+    setIsLoginComplete(false)
   }
 
   useEffect(() => {

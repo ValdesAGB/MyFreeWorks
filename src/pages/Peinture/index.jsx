@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import View from '../../components/View'
-import { apiLink, emptyCategorie } from '../../data'
+import { apiProductLink, emptyCategorie } from '../../data'
 import {
   LoadingContext,
   MessageContext,
@@ -11,7 +11,12 @@ import Feedback from '../../components/Feedback'
 
 function Peinture() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -24,7 +29,7 @@ function Peinture() {
   const categorie = 'peinture'
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product/categorie/${categorie}`,
+    fetchUrl: `${apiProductLink}/categorie/${categorie}`,
     fetchOptions: {
       method: 'GET',
       headers: {
@@ -67,9 +72,9 @@ function Peinture() {
   return (
     <section className="container my-2">
       <div className="row">
-        {isDataLoading ? (
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
           <Loader />
-        ) : message || errorMes ? (
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
         ) : allProducts && allProducts === [] ? (
           { emptyCategorie }

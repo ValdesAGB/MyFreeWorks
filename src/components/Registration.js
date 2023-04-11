@@ -1,26 +1,62 @@
-import React, { useContext, useEffect } from 'react';
-import { registrationElement } from '../data';
-import { colors } from '../untils';
-import RegistrationForm from './RegistrationForm';
-import { CheckPasswordContext } from '../untils/context';
+import React, { useContext, useEffect } from 'react'
+import { registrationElement } from '../data'
+import { colors } from '../untils'
+import RegistrationForm from './RegistrationForm'
+import {
+  AuthContext,
+  CheckPasswordContext,
+  LoadingContext,
+  MessageContext,
+} from '../untils/context'
 
 function Registration() {
-  let titleName = 'Inscription';
-  const { toggleIconeState } = useContext(CheckPasswordContext);
+  let titleName = 'Inscription'
+  const { toggleIconeState } = useContext(CheckPasswordContext)
+  const { setIsSignComplete } = useContext(LoadingContext)
+
+  const {
+    setSignLastName,
+    setSignFirstName,
+    setSignBirthDate,
+    setSignSex,
+    setSignMail,
+    setSignPassword,
+    setSignConfirmPassword,
+  } = useContext(AuthContext)
+
+  const {
+    message,
+    errorMes,
+    codeErr,
+    toggleMessage,
+    toggleErrorMes,
+    toggleCodeErr,
+  } = useContext(MessageContext)
 
   const handleHideModal = () => {
-    toggleIconeState(false);
-  };
+    toggleIconeState(false)
+    toggleMessage(null)
+    toggleErrorMes(null)
+    toggleCodeErr(null)
+    setSignLastName(null)
+    setSignFirstName(null)
+    setSignBirthDate(null)
+    setSignSex(null)
+    setSignMail(null)
+    setSignPassword(null)
+    setSignConfirmPassword(null)
+    setIsSignComplete(false)
+  }
 
   useEffect(() => {
-    const modalEl = document.querySelector('#registrationModal');
+    const modalEl = document.querySelector('#registrationModal')
 
-    modalEl.addEventListener('hidden.bs.modal', handleHideModal);
+    modalEl.addEventListener('hidden.bs.modal', handleHideModal)
 
     return () => {
-      modalEl.removeEventListener('hidden.bs.modal', handleHideModal);
-    };
-  }, []);
+      modalEl.removeEventListener('hidden.bs.modal', handleHideModal)
+    }
+  }, [])
   return (
     <div className="col-lg-5 col">
       <button
@@ -64,7 +100,7 @@ function Registration() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Registration;
+export default Registration

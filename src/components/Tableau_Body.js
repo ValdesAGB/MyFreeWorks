@@ -5,13 +5,18 @@ import {
   MessageContext,
   ProductContext,
 } from '../untils/context'
-import { apiLink, emptyDashboard } from '../data'
+import { apiProductLink, emptyDashboard } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 
 function Tableau_Body() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
-  const { isDataLoading, toggleIsDataLoading } = useContext(LoadingContext)
+  const {
+    isDataLoading,
+    toggleIsDataLoading,
+    isSignComplete,
+    isLoginComplete,
+  } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -28,7 +33,7 @@ function Tableau_Body() {
   }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiLink}/api/product`,
+    fetchUrl: `${apiProductLink}`,
     fetchOptions: {
       method: 'GET',
       headers: {
@@ -68,9 +73,9 @@ function Tableau_Body() {
   return (
     <React.Fragment>
       <tbody className="table-group-divider row">
-        {isDataLoading ? (
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
           <Loader />
-        ) : message || errorMes ? (
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
         ) : allProducts && allProducts.length === 0 ? (
           emptyDashboard
