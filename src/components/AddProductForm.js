@@ -80,9 +80,7 @@ function AddProductForm() {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
-          /*Authorization: `Bearer ${
-            userLogin !== null ? userLogin.token : 'Error'
-          }`,*/
+          Authorization: `Bearer ${userId && userId.token}`,
         },
       },
     },
@@ -122,26 +120,30 @@ function AddProductForm() {
     setCover(null)
     setIsSold(null)
     setSoldPrice(null)
-    setCategorie(null)
+    setCategorie('autres')
   }
 
   const button = () => {
     return (
-      <span className="my-4 row">
-        <span
-          className=" btn col-12 col-md-6 text-center mb-2 mb-md-0"
-          onClick={() => close()}
-        >
-          Nouvel objet.?
-        </span>
+      <>
+        {userId ? (
+          <span className="my-4 row">
+            <span
+              className=" btn col-12 col-md-6 text-center mb-2 mb-md-0"
+              onClick={() => close()}
+            >
+              Nouvel objet.?
+            </span>
 
-        <Link
-          to={`/dashboard/${userId.userId}`}
-          className="text-center col-12 col-md-6"
-        >
-          Tableau de board
-        </Link>
-      </span>
+            <Link
+              to={`/dashboard/${userId.userId}`}
+              className="text-center col-12 col-md-6"
+            >
+              Tableau de board
+            </Link>
+          </span>
+        ) : null}
+      </>
     )
   }
 

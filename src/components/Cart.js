@@ -3,7 +3,7 @@ import React from 'react'
 function Cart() {
   return (
     <React.Fragment>
-      <div className="btn text-white col">Cart</div>
+      <div className=" text-white col btn">Panier</div>
     </React.Fragment>
   )
 }

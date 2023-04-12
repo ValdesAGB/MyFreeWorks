@@ -4,24 +4,26 @@ import { UserContext } from '../untils/context'
 
 function BoardHeader() {
   const { userId } = useContext(UserContext)
+  const username = userId && userId.username
+  var now = new Date()
+  var hours = now.getHours()
 
   return (
     <React.Fragment>
-      {/*<div className="my-4">
-              {hours < 12 ? (
-                <h4 className=" fw-light justify-content-end d-flex">{`Bonjour ${
-                  userLogin !== null ? userLogin.userName.split(' ')[0] : ''
-                }`}</h4>
-              ) : (
-                <h4 className=" fw-light justify-content-end d-flex">{`Bonsoir ${
-                  userLogin !== null ? userLogin.userName.split(' ')[0] : ''
-                }`}</h4>
-              )}
-            </div>*/}
+      {username ? (
+        <div className="my-4">
+          {hours < 12 ? (
+            <h4 className=" fw-light justify-content-end d-none d-md-flex                                  ">{`Bonjour ${
+              username.split(' ')[0]
+            }`}</h4>
+          ) : (
+            <h4 className=" fw-light justify-content-end d-none d-md-flex                                  ">{`Bonsoir ${
+              username.split(' ')[0]
+            }`}</h4>
+          )}
+        </div>
+      ) : null}
 
-      <h4 className=" fw-light justify-content-end d-none d-md-flex">
-        Bonjour {userId ? userId.userId : null}
-      </h4>
       <div className="my-4 row  align-items-center">
         <div className="col-8">
           <h4>Vos produits :</h4>

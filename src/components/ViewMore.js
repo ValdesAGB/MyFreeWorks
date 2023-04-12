@@ -4,6 +4,7 @@ import {
   LoadingContext,
   MessageContext,
   ProductContext,
+  UserContext,
 } from '../untils/context'
 import { apiProductLink } from '../data'
 import { Loader } from '../untils/Loader'
@@ -11,6 +12,7 @@ import Feedback from './Feedback'
 
 function ViewMore() {
   const { id } = useParams()
+  const { userId } = useContext(UserContext)
   const { product, toggleProduct } = useContext(ProductContext)
   const {
     isDataLoading,
@@ -40,16 +42,14 @@ function ViewMore() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*  Authorization: `Bearer ${
-          userLogin !== null ? userLogin.token : 'Error'
-        }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
   }
-
   useEffect(() => {
     toggleProduct(null)
     toggleIsDataLoading(true)
+
     fetch(fetchElements.fetchUrl, fetchElements.fetchOptions)
       .then((promise) => {
         if (!promise.ok) {
@@ -69,7 +69,7 @@ function ViewMore() {
           toggleIsDataLoading(false)
         })
       })
-  }, [])
+  }, [userId]) // On ajoute userId dans la liste de dépendances du useEffect pour qu'il se déclenche à chaque changement de userId
 
   const check = (product, keyIndex) => {
     if (product) {

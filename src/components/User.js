@@ -1,20 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { UserContext } from '../untils/context'
 
 function User() {
   //  ici on devrait pas avoir const { id } = useParams(). L'id serait plutôt récupérer depuis le UserContext, c'est-à-dire les données renvoyées par le backend.
-  const { id } = useParams()
+
+  const { userId } = useContext(UserContext)
   return (
     <React.Fragment>
-      <div>
-        <div className="btn col"></div>
-        <Link
-          to={`/dashboard/${id}`}
-          className="text-white text-decoration-none"
-        >
-          Name
-        </Link>
-      </div>
+      <Link
+        to={`/dashboard/${userId && userId.userId}`}
+        className="text-white text-decoration-none col"
+      >
+        Dashboard
+      </Link>
     </React.Fragment>
   )
 }

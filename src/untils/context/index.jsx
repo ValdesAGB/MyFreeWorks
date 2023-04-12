@@ -1,5 +1,8 @@
 import { createContext, useEffect, useState } from 'react'
 import { decoded } from '../../data'
+import Cookies from 'js-cookie'
+
+const cookie = Cookies.get('userInfos')
 
 export const CheckPasswordContext = createContext()
 export const CheckPasswordProvider = ({ children }) => {
@@ -90,7 +93,7 @@ export const NewProductProvider = ({ children }) => {
   const [isSold, setIsSold] = useState(false)
   const [soldPrice, setSoldPrice] = useState(0)
   const [categorie, setCategorie] = useState('autres')
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(cookie && decoded('userInfos'))
 
   useEffect(() => {
     const decodedUserInfos = decoded('userInfos')
@@ -192,7 +195,7 @@ export const MessageProvider = ({ children }) => {
 
 export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
-  const [userId, setUserId] = useState(null)
+  const [userId, setUserId] = useState(cookie ? decoded('userInfos') : null)
 
   useEffect(() => {
     const decodedUserInfos = decoded('userInfos')

@@ -6,7 +6,7 @@ import {
   MessageContext,
 } from '../untils/context'
 import Icone from './Icone'
-import { apiUserLink, decoded, encoded } from '../data'
+import { apiUserLink, encoded } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 import { Link } from 'react-router-dom'

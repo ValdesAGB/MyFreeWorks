@@ -4,6 +4,7 @@ import {
   LoadingContext,
   MessageContext,
   ProductContext,
+  UserContext,
 } from '../untils/context'
 import { apiProductLink } from '../data'
 import { Loader } from '../untils/Loader'
@@ -29,6 +30,8 @@ function UserView() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
+  const { userId } = useContext(UserContext)
+
   useEffect(() => {
     toggleMessage(null)
     toggleErrorMes(null)
@@ -42,9 +45,7 @@ function UserView() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*  Authorization: `Bearer ${
-          userLogin !== null ? userLogin.token : 'Error'
-        }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
     DeleteOptions: {
@@ -52,9 +53,7 @@ function UserView() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*  Authorization: `Bearer ${
-          userLogin !== null ? userLogin.token : 'Error'
-        }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
   }

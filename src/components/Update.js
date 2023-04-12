@@ -6,6 +6,7 @@ import {
   MessageContext,
   NewProductContext,
   ProductContext,
+  UserContext,
 } from '../untils/context'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
@@ -41,6 +42,8 @@ function Update() {
     cover,
     newProduct,
   } = useContext(NewProductContext)
+
+  const { userId } = useContext(UserContext)
 
   const set = (id, event) => {
     switch (id) {
@@ -111,9 +114,7 @@ function Update() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*Authorization: `Bearer ${
-            userLogin !== null ? userLogin.token : 'Error'
-          }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
 
@@ -123,9 +124,7 @@ function Update() {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*Authorization: `Bearer ${
-            userLogin !== null ? userLogin.token : 'Error'
-          }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
   }

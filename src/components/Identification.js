@@ -7,24 +7,22 @@ import { userIcone } from '../data'
 import { UserContext } from '../untils/context'
 
 function Identification() {
-  const { user } = useContext(UserContext)
+  const { userId } = useContext(UserContext)
   return (
     <div className="col-lg-5 col row offset-1 navbar navbar-expand-md">
-      {user ? (
+      {userIcone.disconnect_connect}
+      {userId ? (
         <>
-          {userIcone.connect}
-          <span className="collapse navbar-collapse" id="navbar">
-            <Cart />
+          <span
+            className="collapse navbar-collapse border text-center rounded"
+            id="navbar"
+          >
             <User />
-          </span>
-          <span className="collapse navbar-collapse" id="navbar">
-            <Connexion />
-            <Registration />
+            <Cart />
           </span>
         </>
       ) : (
         <>
-          {userIcone.disconnect}
           <span className="collapse navbar-collapse" id="navbar">
             <Connexion />
             <Registration />

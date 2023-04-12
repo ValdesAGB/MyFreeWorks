@@ -320,7 +320,7 @@ export const passwordAdvice = [
 ]
 
 export const userIcone = {
-  disconnect: (
+  disconnect_connect: (
     <i
       className={`navbar-toggler text-white fs-3 align-items-center text-center border border-0 bi bi-person-fill`}
       data-bs-toggle="collapse"
@@ -329,11 +329,6 @@ export const userIcone = {
       aria-expanded="false"
       aria-label="Toggle navigation"
     ></i>
-  ),
-  connect: (
-    <div className="bg-white text-center shadow bg-body-tertiary rounded">
-      <span className="text-dark p-3 mb-5  ">Name</span>
-    </div>
   ),
 }
 

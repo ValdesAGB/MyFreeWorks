@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { apiProductLink, emptyDashboard } from '../data'
 import {
   LoadingContext,
   MessageContext,
   ProductContext,
+  UserContext,
 } from '../untils/context'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 
 function Tableau_md_Body() {
+  const { id } = useParams()
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
   const {
     isDataLoading,
@@ -26,6 +28,8 @@ function Tableau_md_Body() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
+  const { userId } = useContext(UserContext)
+
   useEffect(() => {
     toggleMessage(null)
     toggleErrorMes(null)
@@ -33,15 +37,13 @@ function Tableau_md_Body() {
   }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiProductLink}`,
+    fetchUrl: `${apiProductLink}/user/${id}`,
     fetchOptions: {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*  Authorization: `Bearer ${
-          userLogin !== null ? userLogin.token : 'Error'
-        }`,*/
+        Authorization: `Bearer ${userId ? userId.token : 'Error'}`,
       },
     },
   }
