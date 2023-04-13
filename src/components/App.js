@@ -26,6 +26,7 @@ import Others from '../pages/Others'
 import Dashboard from '../pages/Dashboard'
 import Owner from '../pages/Owner Product'
 import Modify from '../pages/Modify'
+import UpdateUserInfos from '../pages/Update UserInfos'
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -48,7 +49,7 @@ function App() {
                       <Header />
                       <Menu />
                       <Routes>
-                        <Route path="/" element={<Home />} />
+                        <Route path="/MyFreeWorks" element={<Home />} />
                         <Route path="/newproduct" element={<AddProduct />} />
                         <Route path="/graphisme" element={<Graphisme />} />
                         <Route path="/peinture" element={<Peinture />} />
@@ -63,6 +64,10 @@ function App() {
                         <Route
                           path="/update/product/:id"
                           element={<Modify />}
+                        />
+                        <Route
+                          path="/user/update/:id"
+                          element={<UpdateUserInfos />}
                         />
                         <Route path="/dashboard/:id" element={<Dashboard />} />
                         <Route path="/*" element={<NotFound />} />

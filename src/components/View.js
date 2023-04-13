@@ -17,7 +17,7 @@ function View({ id, cover, name, isSold, price, soldPrice, to, description }) {
 
   return (
     <div className="col-12 col-sm-6 col-lg-3">
-      {pathActuel !== '/' ? (
+      {pathActuel !== '/MyFreeWorks' ? (
         <ViewOthers
           id={id}
           cover={cover}

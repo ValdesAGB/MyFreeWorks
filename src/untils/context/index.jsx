@@ -42,6 +42,21 @@ export const AuthProvider = ({ children }) => {
     signConfirmPassword,
   }
 
+  const [updateLastName, setupdateLastName] = useState(null)
+  const [updateFirstName, setupdateFirstName] = useState(null)
+  const [updateBirthDate, setupdateBirthDate] = useState(null)
+  const [updateMail, setupdateMail] = useState(null)
+  const [updateOldPassword, setupdateOldPassword] = useState(null)
+  const [newPassword, setnewPassword] = useState(null)
+  const udpateUser = {
+    updateLastName,
+    updateFirstName,
+    updateBirthDate,
+    updateMail,
+    updateOldPassword,
+    newPassword,
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -56,6 +71,13 @@ export const AuthProvider = ({ children }) => {
         setSignPassword,
         setSignConfirmPassword,
         signup,
+        setupdateLastName,
+        setupdateFirstName,
+        setupdateBirthDate,
+        setupdateMail,
+        setupdateOldPassword,
+        setnewPassword,
+        udpateUser,
       }}
     >
       {children}
@@ -196,14 +218,19 @@ export const MessageProvider = ({ children }) => {
 export const UserContext = createContext()
 export const UserProvider = ({ children }) => {
   const [userId, setUserId] = useState(cookie ? decoded('userInfos') : null)
-
   useEffect(() => {
     const decodedUserInfos = decoded('userInfos')
     if (decodedUserInfos) {
       setUserId(decodedUserInfos)
     }
   }, [])
+  const [userInfos, setUserInfos] = useState(null)
+  const toggleUserInfos = (infos) => {
+    setUserInfos(infos)
+  }
   return (
-    <UserContext.Provider value={{ userId }}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ userId, userInfos, toggleUserInfos }}>
+      {children}
+    </UserContext.Provider>
   )
 }

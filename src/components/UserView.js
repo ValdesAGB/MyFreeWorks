@@ -119,17 +119,19 @@ function UserView() {
 
   return (
     <React.Fragment>
-      {isDataLoading && !isSignComplete && !isLoginComplete ? (
-        <Loader />
-      ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
-        <Feedback button={button()} />
-      ) : (
-        <>
-          <UserViewMd product={product} supprimed={supprimed} />
+      <section className="container my-2">
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
+          <Loader />
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
+          <Feedback button={button()} />
+        ) : (
+          <>
+            <UserViewMd product={product} supprimed={supprimed} />
 
-          <UserViewSm product={product} supprimed={supprimed} />
-        </>
-      )}
+            <UserViewSm product={product} supprimed={supprimed} />
+          </>
+        )}
+      </section>
     </React.Fragment>
   )
 }

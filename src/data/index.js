@@ -236,7 +236,7 @@ export const addProductElement = [
 export const menuElement = [
   {
     id: 'acceuil',
-    to: '/',
+    to: '/MyFreeWorks',
     name: 'Acceuil',
     icone: 'fa-solid fa-house',
   },
@@ -462,3 +462,103 @@ export const decoded = (cookiesName) => {
     return decodedData // Afficher les données décodées dans la console
   }
 }
+
+export const updateUserElements = [
+  {
+    id: 'lastName',
+    title: 'Nom :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+
+  {
+    id: 'firstName',
+    title: 'Prénom(s) :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+
+  {
+    id: 'dateOfBirth',
+    title: 'Date de naissance :',
+    inputType: 'date',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+
+  /* {
+    id: 'Sex',
+    title: 'Sexe :',
+    inputType: '',
+    labelClass: 'form-label',
+    inputClass: '',
+    divClass: 'mb-1',
+  },
+
+  {
+    id: 'man',
+    title: 'Masculin',
+    value: 'Masculin',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'form-check',
+  },
+
+  {
+    id: 'woman',
+    title: 'Féminin',
+    value: 'Féminin',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'form-check',
+  },
+
+  {
+    id: 'nobinary',
+    title: 'Non binaire',
+    value: 'Non binaire',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'mb-3 form-check',
+  },*/
+
+  {
+    id: 'mail',
+    title: 'Adresse mail :',
+    inputType: 'email',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+
+  {
+    id: 'oldPassword',
+    title: 'Ancien mot  de passe :',
+    inputType: 'password',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    placeholder: 'Entrez votre ancien mot de passe',
+    divClass: 'mb-3',
+  },
+
+  {
+    id: 'newPassword',
+    title: 'Nouveau mot de passe :',
+    inputType: 'password',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    placeholder: 'Entrez votre le nouveau mot de passe',
+    divClass: 'mb-3',
+  },
+]

@@ -1,29 +1,32 @@
 import React from 'react'
+import UserInfos from './UserInfos'
+import { Link, useParams } from 'react-router-dom'
 
-function Cart() {
+function Parameter() {
+  const { id } = useParams()
   return (
     <React.Fragment>
       <button
         type="button"
-        className="btn text-white col"
+        className="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#cart"
+        data-bs-target="#parameters"
       >
-        Panier
+        Paramètres
       </button>
 
       <div
-        className="modal fade text-dark"
-        id="cart"
+        className="modal fade"
+        id="parameters"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog">
+        <div className="modal-dialog modal-dialog-centered text-start">
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Votre panier
+                Vos informations
               </h1>
               <button
                 type="button"
@@ -33,20 +36,18 @@ function Cart() {
               ></button>
             </div>
             <div className="modal-body">
-              Cette fonctionnnalité n'est pas encore entièrement mise en ligne.
-              Vous serez informer dès que cela sera.
+              <UserInfos id={id} />
             </div>
             <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Vider le panier
-              </button>
-              {/*<button type="button" className="btn btn-primary">
-                Save changes
-              </button>*/}
+              <Link to={`/user/update/${id}`}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Modifier mes informations
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -55,4 +56,4 @@ function Cart() {
   )
 }
 
-export default Cart
+export default Parameter

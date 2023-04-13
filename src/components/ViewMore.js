@@ -6,7 +6,7 @@ import {
   ProductContext,
   UserContext,
 } from '../untils/context'
-import { apiProductLink } from '../data'
+import { apiProductLink, check } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
 
@@ -71,54 +71,49 @@ function ViewMore() {
       })
   }, [userId]) // On ajoute userId dans la liste de dépendances du useEffect pour qu'il se déclenche à chaque changement de userId
 
-  const check = (product, keyIndex) => {
-    if (product) {
-      const firstKey = Object.keys(product)[keyIndex]
-      if (firstKey) {
-        return product[firstKey]
-      }
-    }
-    return 'Error'
-  }
-
   return (
     <React.Fragment>
-      {isDataLoading && !isSignComplete && !isLoginComplete ? (
-        <Loader />
-      ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
-        <Feedback />
-      ) : (
-        <div className="container my-2">
-          <div className="row my-2 align-items-center">
-            <span className="col">{check(product, 1)}</span>
-            {product && product.isSold ? (
-              <>
-                <span className="col  text-end">
-                  <span className="fs-4">{check(product, 6)} €</span>
+      <section className="container my-2">
+        {isDataLoading && !isSignComplete && !isLoginComplete ? (
+          <Loader />
+        ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
+          <Feedback />
+        ) : (
+          <div className="container my-2">
+            <div className="row my-2 align-items-center">
+              <span className="col">{check(product, 1)}</span>
+              {product && product.isSold ? (
+                <>
+                  <span className="col  text-end">
+                    <span className="fs-4">{check(product, 6)} €</span>
 
-                  <span className=" text-decoration-line-through offset-1">
-                    {check(product, 4)} €
+                    <span className=" text-decoration-line-through offset-1">
+                      {check(product, 4)} €
+                    </span>
                   </span>
-                </span>
-              </>
-            ) : (
-              <span className="col text-end">{check(product, 4)} €</span>
-            )}
+                </>
+              ) : (
+                <span className="col text-end">{check(product, 4)} €</span>
+              )}
+            </div>
+            <div className="row my-2">
+              <img
+                src={check(product, 3)}
+                alt={`${check(product, 2)} - cover`}
+              />
+            </div>
+            <div className="border p-2">{check(product, 2)}</div>
+            <div className="my-3 text-end">
+              <button
+                className="btn btn-primary"
+                onClick={() => alert('Produit ajouté au panier')}
+              >
+                Ajouter au panier
+              </button>
+            </div>
           </div>
-          <div className="row my-2">
-            <img src={check(product, 3)} alt={`${check(product, 2)} - cover`} />
-          </div>
-          <div className="border p-2">{check(product, 2)}</div>
-          <div className="my-3 text-end">
-            <button
-              className="btn btn-primary"
-              onClick={() => alert('Produit ajouté au panier')}
-            >
-              Ajouter au panier
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+      </section>
     </React.Fragment>
   )
 }
