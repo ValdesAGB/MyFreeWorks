@@ -296,9 +296,10 @@ export const messageAlert =
 
 export const comeUpLink = 'https://comeup.com/profil/valdesagb'
 
-export const apiProductLink = 'http://localhost:3001/api/product'
+export const apiProductLink =
+  'https://myfreeworks-api.herokuapp.com/api/product/'
 
-export const apiUserLink = 'http://localhost:3001/api/auth'
+export const apiUserLink = 'https://myfreeworks-api.herokuapp.com/api/auth'
 
 export const passwordAdvice = [
   {
