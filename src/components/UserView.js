@@ -86,7 +86,9 @@ function UserView() {
     return (
       <span className="my-5">
         {/*Ici nous reviendrons mettre à jour le bouton afin que id soit le id du user. */}
-        <Link to="/dashboard/id">Retour au tableau de bord</Link>
+        <Link to={`/dashboard/${userId && userId.userId}`}>
+          Retour au tableau de bord
+        </Link>
       </span>
     )
   }

@@ -563,3 +563,33 @@ export const updateUserElements = [
     divClass: 'mb-3',
   },
 ]
+
+export const addToCart = (name, price, cart, setCart) => {
+  const currentPlantAdded = cart.find((plant) => plant.name === name)
+  if (currentPlantAdded) {
+    const cartFilteredCurrentPlant = cart.filter((plant) => plant.name !== name)
+    setCart([
+      ...cartFilteredCurrentPlant,
+      { name, price, amount: currentPlantAdded.amount + 1 },
+    ])
+  } else {
+    setCart([...cart, { name, price, amount: 1 }])
+  }
+}
+
+export const withdrawCart = (cart, setCart, name, price) => {
+  const currentClothesAmount = cart.find((cloth) => cloth.name === name)
+  if (currentClothesAmount) {
+    const cartFilteredCurrentClothes = cart.filter(
+      (plant) => plant.name !== name
+    )
+    if (currentClothesAmount.amount === 1) {
+      setCart([...cartFilteredCurrentClothes])
+    } else {
+      setCart([
+        ...cartFilteredCurrentClothes,
+        { name, price, amount: currentClothesAmount.amount - 1 },
+      ])
+    }
+  }
+}

@@ -17,7 +17,10 @@ function Header() {
       >
         <div className="col-7 col-lg-4">
           <h1>
-            <Link to="/MyFreeWorks" className="text-white text-decoration-none">
+            <Link
+              to="/MyFreeWorks/"
+              className="text-white text-decoration-none"
+            >
               {siteName}
             </Link>
           </h1>

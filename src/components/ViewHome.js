@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { UserContext } from '../untils/context'
+import AddToCartBtn from './AddToCartBtn'
 
 function ViewHome({
   to,
@@ -50,16 +51,7 @@ function ViewHome({
         <span className="row mb-4 align-items-center border border-primary rounded mx-2">
           <span className="col">{name}</span>
           {userId ? (
-            <span className="text-end col">
-              <i
-                className="bi bi-cart-plus btn text-primary fw-bold fs-4"
-                onClick={() =>
-                  alert(
-                    "Cette fonctionnnalité n'est pas encore disponible mais elle ne saurait tarder. Merci pour votre patience!"
-                  )
-                }
-              ></i>
-            </span>
+            <AddToCartBtn name={name} price={soldPrice ? soldPrice : price} />
           ) : null}
         </span>
       </span>

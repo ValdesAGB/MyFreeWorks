@@ -49,7 +49,7 @@ function ViewOthers({
           </span>
         </>
       </Link>
-      <Button name={name} price={price} soldPrice={soldPrice} />
+      <Button name={name} price={soldPrice ? soldPrice : price} />
     </div>
   )
 }

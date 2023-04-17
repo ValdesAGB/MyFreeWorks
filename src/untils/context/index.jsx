@@ -234,3 +234,17 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   )
 }
+
+const myfreeworksCart = localStorage.getItem('myfreeworksShop')
+
+export const CartContext = createContext()
+export const CartProvider = ({ children }) => {
+  const [cart, setCart] = useState(
+    myfreeworksCart ? JSON.parse(myfreeworksCart) : []
+  )
+  return (
+    <CartContext.Provider value={{ cart, setCart }}>
+      {children}
+    </CartContext.Provider>
+  )
+}

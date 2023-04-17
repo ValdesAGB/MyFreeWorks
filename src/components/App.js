@@ -11,6 +11,7 @@ import Menu from './Menu'
 import { Route, Routes } from 'react-router-dom'
 import {
   AuthProvider,
+  CartProvider,
   CheckPasswordProvider,
   LoadingProvider,
   MessageProvider,
@@ -44,37 +45,42 @@ function App() {
             <CheckPasswordProvider>
               <AuthProvider>
                 <NewProductProvider>
-                  <ProductProvider>
-                    <>
-                      <Header />
-                      <Menu />
-                      <Routes>
-                        <Route path="/MyFreeWorks" element={<Home />} />
-                        <Route path="/newproduct" element={<AddProduct />} />
-                        <Route path="/graphisme" element={<Graphisme />} />
-                        <Route path="/peinture" element={<Peinture />} />
-                        <Route path="/poterie" element={<Poterie />} />
-                        <Route path="/autres" element={<Others />} />
-                        <Route
-                          path="/photographie"
-                          element={<Photographie />}
-                        />
-                        <Route path="/view/product/:id" element={<Owner />} />
-                        <Route path="/viewmore/:id" element={<ViewMore />} />
-                        <Route
-                          path="/update/product/:id"
-                          element={<Modify />}
-                        />
-                        <Route
-                          path="/user/update/:id"
-                          element={<UpdateUserInfos />}
-                        />
-                        <Route path="/dashboard/:id" element={<Dashboard />} />
-                        <Route path="/*" element={<NotFound />} />
-                      </Routes>
-                      <Footer />
-                    </>
-                  </ProductProvider>
+                  <CartProvider>
+                    <ProductProvider>
+                      <>
+                        <Header />
+                        <Menu />
+                        <Routes>
+                          <Route path="/MyFreeWorks" element={<Home />} />
+                          <Route path="/newproduct" element={<AddProduct />} />
+                          <Route path="/graphisme" element={<Graphisme />} />
+                          <Route path="/peinture" element={<Peinture />} />
+                          <Route path="/poterie" element={<Poterie />} />
+                          <Route path="/autres" element={<Others />} />
+                          <Route
+                            path="/photographie"
+                            element={<Photographie />}
+                          />
+                          <Route path="/view/product/:id" element={<Owner />} />
+                          <Route path="/viewmore/:id" element={<ViewMore />} />
+                          <Route
+                            path="/update/product/:id"
+                            element={<Modify />}
+                          />
+                          <Route
+                            path="/user/update/:id"
+                            element={<UpdateUserInfos />}
+                          />
+                          <Route
+                            path="/dashboard/:id"
+                            element={<Dashboard />}
+                          />
+                          <Route path="/*" element={<NotFound />} />
+                        </Routes>
+                        <Footer />
+                      </>
+                    </ProductProvider>
+                  </CartProvider>
                 </NewProductProvider>
               </AuthProvider>
             </CheckPasswordProvider>

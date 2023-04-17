@@ -9,6 +9,7 @@ import {
 import { apiProductLink, check } from '../data'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
+import AddToCartBtn from './AddToCartBtn'
 
 function ViewMore() {
   const { id } = useParams()
@@ -20,14 +21,8 @@ function ViewMore() {
     isSignComplete,
     isLoginComplete,
   } = useContext(LoadingContext)
-  const {
-    message,
-    errorMes,
-    codeErr,
-    toggleMessage,
-    toggleErrorMes,
-    toggleCodeErr,
-  } = useContext(MessageContext)
+  const { message, errorMes, toggleMessage, toggleErrorMes, toggleCodeErr } =
+    useContext(MessageContext)
 
   useEffect(() => {
     toggleMessage(null)
@@ -85,15 +80,15 @@ function ViewMore() {
               {product && product.isSold ? (
                 <>
                   <span className="col  text-end">
-                    <span className="fs-4">{check(product, 6)} €</span>
+                    <span className="fs-4">{check(product, 6)} $</span>
 
                     <span className=" text-decoration-line-through offset-1">
-                      {check(product, 4)} €
+                      {check(product, 4)} $
                     </span>
                   </span>
                 </>
               ) : (
-                <span className="col text-end">{check(product, 4)} €</span>
+                <span className="col text-end">{check(product, 4)} $</span>
               )}
             </div>
             <div className="row my-2">
@@ -104,12 +99,13 @@ function ViewMore() {
             </div>
             <div className="border p-2">{check(product, 2)}</div>
             <div className="my-3 text-end">
-              <button
-                className="btn btn-primary"
-                onClick={() => alert('Produit ajouté au panier')}
-              >
-                Ajouter au panier
-              </button>
+              <AddToCartBtn
+                name={check(product, 1)}
+                price={
+                  check(product, 6) ? check(product, 6) : check(product, 4)
+                }
+                nameBtn={'Ajouter au panier'}
+              />
             </div>
           </div>
         )}
