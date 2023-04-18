@@ -10,6 +10,7 @@ import {
 } from '../untils/context'
 import { Loader } from '../untils/Loader'
 import Feedback from './Feedback'
+import { object } from 'prop-types'
 
 function Update() {
   const { id } = useParams()
@@ -38,13 +39,17 @@ function Update() {
     setIsSold,
     setSoldPrice,
     setCategorie,
-    isSold,
+    name,
+    description,
+    price,
     cover,
+    isSold,
+    soldPrice,
+    categorie,
     newProduct,
   } = useContext(NewProductContext)
 
   const { userId } = useContext(UserContext)
-
   const set = (id, event) => {
     switch (id) {
       case 'nameProd':
@@ -57,7 +62,7 @@ function Update() {
         setPrice(event.target.value)
         break
       case 'coverProd':
-        setCover(event.target.value)
+        setCover(event.target.files[0])
         break
       case 'soldPriceProd':
         setSoldPrice(event.target.value)
@@ -90,7 +95,7 @@ function Update() {
         return check(product, 2)
 
       case 'coverProd':
-        return check(product, 3)
+        return ''
       case 'priceProd':
         return check(product, 4)
 
@@ -118,21 +123,22 @@ function Update() {
       },
     },
 
-    PUToptions: {
+    /* PUToptions: {
       method: 'PUT',
-      body: JSON.stringify(newProduct),
+      body: formData,
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
         Authorization: `Bearer ${userId && userId.token}`,
       },
-    },
+    },*/
   }
 
   const getOfFetch = () => {
     toggleMessage(null)
     toggleErrorMes(null)
     toggleCodeErr(null)
+
     toggleIsDataLoading(true)
     fetch(fetchElements.url, fetchElements.GEToptions)
       .then((promise) => {
@@ -174,7 +180,24 @@ function Update() {
 
   const update = (e) => {
     e.preventDefault()
-    fetch(fetchElements.url, fetchElements.PUToptions)
+    toggleIsDataLoading(true)
+    const formData = new FormData()
+    formData.append('image', cover)
+    formData.append('name', name)
+    formData.append('description', description)
+    formData.append('price', price)
+    formData.append('isSold', isSold)
+    formData.append('soldPrice', soldPrice)
+    formData.append('categorie', categorie)
+    fetch(fetchElements.url, {
+      method: 'PUT',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        // 'Content-Type': 'application/json',
+        Authorization: `Bearer ${userId && userId.token}`,
+      },
+    })
       .then((promise) => {
         if (!promise.ok) {
           throw promise
@@ -266,6 +289,12 @@ function Update() {
                       defaultValue={data(id)}
                       onChange={(e) => set(id, e)}
                     />
+                  )}
+                  {id === 'coverProd' && (
+                    <div className="mt-3">
+                      En ajoutant une nouvelle image, vous modifez l'ancienne.
+                      Dans le cas, contraire, l'ancienne est maintenue
+                    </div>
                   )}
                   {cover && id === 'coverProd' ? (
                     <div className="row my-3">

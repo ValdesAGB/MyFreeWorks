@@ -73,6 +73,13 @@ function ViewMore() {
           <Loader />
         ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
+        ) : product === null ? (
+          <div className="container my-5">
+            <div className="row my-2 align-items-center justify-content-center">
+              Le produit que vous demandez n'est pas disponible sur ce site ou a
+              été supprimé.
+            </div>
+          </div>
         ) : (
           <div className="container my-2">
             <div className="row my-2 align-items-center">

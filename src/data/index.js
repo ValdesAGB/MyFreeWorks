@@ -195,7 +195,7 @@ export const addProductElement = [
     id: 'coverProd',
     title: 'Image :',
     placeholder: 'https://...',
-    inputType: 'text',
+    inputType: 'file',
     labelClass: 'form-label',
     inputClass: 'form-control',
     divClass: 'mb-3',
@@ -296,8 +296,7 @@ export const messageAlert =
 
 export const comeUpLink = 'https://comeup.com/profil/valdesagb'
 
-export const apiProductLink =
-  'https://myfreeworks-api.herokuapp.com/api/product/'
+export const apiProductLink = 'http://localhost:3001/api/product'
 
 export const apiUserLink = 'https://myfreeworks-api.herokuapp.com/api/auth'
 

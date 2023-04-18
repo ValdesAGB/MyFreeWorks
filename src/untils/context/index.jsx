@@ -3,6 +3,7 @@ import { decoded } from '../../data'
 import Cookies from 'js-cookie'
 
 const cookie = Cookies.get('userInfos')
+const myfreeworksCart = localStorage.getItem('myfreeworksShop')
 
 export const CheckPasswordContext = createContext()
 export const CheckPasswordProvider = ({ children }) => {
@@ -145,9 +146,13 @@ export const NewProductProvider = ({ children }) => {
         setIsSold,
         setSoldPrice,
         setCategorie,
+        name,
+        description,
+        price,
+        cover,
         isSold,
         soldPrice,
-        cover,
+        categorie,
         newProduct,
       }}
     >
@@ -234,8 +239,6 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   )
 }
-
-const myfreeworksCart = localStorage.getItem('myfreeworksShop')
 
 export const CartContext = createContext()
 export const CartProvider = ({ children }) => {

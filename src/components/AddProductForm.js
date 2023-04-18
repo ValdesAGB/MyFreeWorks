@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { addProductElement, apiProductLink } from '../data'
 import { Link } from 'react-router-dom'
 import {
@@ -19,8 +19,13 @@ function AddProductForm() {
     setIsSold,
     setSoldPrice,
     setCategorie,
-    isSold,
+    name,
+    description,
+    price,
     cover,
+    isSold,
+    soldPrice,
+    categorie,
     newProduct,
   } = useContext(NewProductContext)
   const {
@@ -40,6 +45,11 @@ function AddProductForm() {
     toggleErrorMes,
     toggleCodeErr,
   } = useContext(MessageContext)
+  const notEmpty = (obj) => {
+    if (obj !== null) {
+      return obj
+    }
+  }
 
   const set = (id, event) => {
     switch (id) {
@@ -53,7 +63,7 @@ function AddProductForm() {
         setPrice(event.target.value)
         break
       case 'coverProd':
-        setCover(event.target.value)
+        setCover(event.target.files[0])
         break
       case 'soldPriceProd':
         setSoldPrice(event.target.value)
@@ -74,7 +84,7 @@ function AddProductForm() {
   const fetchElements = {
     fetchPost: {
       url: `${apiProductLink}`,
-      options: {
+      /* options: {
         method: 'POST',
         body: JSON.stringify(newProduct),
         headers: {
@@ -82,14 +92,32 @@ function AddProductForm() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${userId && userId.token}`,
         },
-      },
+      },*/
     },
   }
-
+  // const [cover, setCov] = useState(null)
   const save = (e) => {
     e.preventDefault()
     toggleIsDataLoading(true)
-    fetch(fetchElements.fetchPost.url, fetchElements.fetchPost.options)
+
+    const formData = new FormData()
+    formData.append('image', cover)
+    formData.append('name', notEmpty(name))
+    formData.append('description', notEmpty(description))
+    formData.append('price', notEmpty(price))
+    formData.append('isSold', notEmpty(isSold))
+    formData.append('soldPrice', notEmpty(soldPrice))
+    formData.append('categorie', notEmpty(categorie))
+
+    fetch(fetchElements.fetchPost.url, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Accept: 'application/json',
+        // 'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${userId && userId.token}`,
+      },
+    })
       .then((promise) => {
         if (!promise.ok) {
           throw promise
@@ -267,6 +295,7 @@ function AddProductForm() {
               </span>
             )
           )}
+
           {/* revoir  le bouton pour que tous soit rempli avant que le bouton ne soit disponible.*/}
           <button
             type="submit"

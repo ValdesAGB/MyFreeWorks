@@ -83,12 +83,12 @@ function UserView() {
   }, [])
 
   const button = () => {
+    setTimeout(() => {
+      window.location.pathname = `/dashboard/${userId && userId.userId}`
+    }, 2000)
     return (
       <span className="my-5">
-        {/*Ici nous reviendrons mettre à jour le bouton afin que id soit le id du user. */}
-        <Link to={`/dashboard/${userId && userId.userId}`}>
-          Retour au tableau de bord
-        </Link>
+        Vous serez rediriger vers votre tableau de bord dans un instant.
       </span>
     )
   }
