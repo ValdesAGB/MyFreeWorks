@@ -1,29 +1,15 @@
 import React, { useContext, useEffect } from 'react'
-import { registrationElement } from '../data'
 import { colors } from '../untils'
-import RegistrationForm from './RegistrationForm'
+import ConnexionForm from './ConnexionForm'
 import {
-  AuthContext,
   CheckPasswordContext,
   LoadingContext,
   MessageContext,
 } from '../untils/context'
 
-function Registration() {
-  let titleName = 'Inscription'
+function ConnexionModal({ titleName, mapValeur }) {
   const { toggleIconeState } = useContext(CheckPasswordContext)
-  const { setIsSignComplete } = useContext(LoadingContext)
-
-  const {
-    setSignLastName,
-    setSignFirstName,
-    setSignBirthDate,
-    setSignSex,
-    setSignMail,
-    setSignPassword,
-    setSignConfirmPassword,
-  } = useContext(AuthContext)
-
+  const { setIsLoginComplete } = useContext(LoadingContext)
   const {
     message,
     errorMes,
@@ -35,21 +21,14 @@ function Registration() {
 
   const handleHideModal = () => {
     toggleIconeState(false)
+    toggleIconeState(false)
     toggleMessage(null)
     toggleErrorMes(null)
-    toggleCodeErr(null)
-    setSignLastName(null)
-    setSignFirstName(null)
-    setSignBirthDate(null)
-    setSignSex(null)
-    setSignMail(null)
-    setSignPassword(null)
-    setSignConfirmPassword(null)
-    setIsSignComplete(false)
+    setIsLoginComplete(false)
   }
 
   useEffect(() => {
-    const modalEl = document.querySelector('#registrationModal')
+    const modalEl = document.querySelector('#connexionModal')
 
     modalEl.addEventListener('hidden.bs.modal', handleHideModal)
 
@@ -58,7 +37,7 @@ function Registration() {
     }
   }, [])
   return (
-    <div className="col-lg-5 col">
+    <div className="col-lg-7 col-6">
       <button
         style={{
           backgroundColor: colors.headerBackground,
@@ -67,14 +46,13 @@ function Registration() {
         type="button"
         className="btn btn-primary"
         data-bs-toggle="modal"
-        data-bs-target="#registrationModal"
+        data-bs-target="#connexionModal"
       >
         {titleName}
       </button>
-
       <div
         className="modal fade text-black"
-        id="registrationModal"
+        id="connexionModal"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -94,7 +72,7 @@ function Registration() {
             </div>
 
             <div className="modal-body">
-              <RegistrationForm mapElement={registrationElement} />
+              <ConnexionForm mapElement={mapValeur} />
             </div>
           </div>
         </div>
@@ -103,4 +81,4 @@ function Registration() {
   )
 }
 
-export default Registration
+export default ConnexionModal

@@ -1,23 +1,23 @@
-import React from 'react';
-import styled from 'styled-components';
-import { police } from '../untils';
+import React, { useContext } from 'react'
+import { UserContext } from '../untils/context'
+import AddToCartBtn from './AddToCartBtn'
 
 function Button({ name, price, soldPrice }) {
-  const ButtonStyle = styled.button`
-    font-family: ${police.ff1};
-  `;
-
-  /* function things() {
-    let Xprice = soldPrice !== 0 ? soldPrice : price;
-    console.log('name :', name, 'Xprice :', Xprice + '$');
-  }*/
+  const { userId } = useContext(UserContext)
+  const accountState = userId && userId.stateAccount
   return (
-    <div>
-      <ButtonStyle className="btn btn-primary p-1">
-        Ajouter au panier
-      </ButtonStyle>
-    </div>
-  );
+    <React.Fragment>
+      {userId && accountState ? (
+        <div>
+          <AddToCartBtn
+            name={name}
+            price={soldPrice ? soldPrice : price}
+            nameBtn={'Ajouter au panier'}
+          />
+        </div>
+      ) : null}
+    </React.Fragment>
+  )
 }
 
-export default Button;
+export default Button

@@ -1,87 +1,12 @@
-import graphisme1 from '../assets/graphisme/graphisme1.jpg';
-import graphisme2 from '../assets/graphisme/graphisme2.jpg';
-import graphisme3 from '../assets/graphisme/graphisme3.jpg';
-import graphisme4 from '../assets/graphisme/graphisme4.png';
-import graphisme5 from '../assets/graphisme/graphisme5.jpg';
-import graphisme6 from '../assets/graphisme/graphisme6.jpeg';
-import graphisme7 from '../assets/graphisme/graphisme7.jpg';
-import graphisme8 from '../assets/graphisme/graphisme8.jpg';
-import graphisme9 from '../assets/graphisme/graphisme9.jpg';
-import graphisme10 from '../assets/graphisme/graphisme10.jpg';
-import graphisme11 from '../assets/graphisme/graphisme11.jpg';
-import graphisme12 from '../assets/graphisme/graphisme12.jpg';
-import peinture1 from '../assets/peinture/peinture1.jpg';
-import peinture2 from '../assets/peinture/peinture2.jpg';
-import peinture3 from '../assets/peinture/peinture3.jpg';
-import peinture4 from '../assets/peinture/peinture4.jpg';
-import peinture5 from '../assets/peinture/peinture5.jpg';
-import peinture6 from '../assets/peinture/peinture6.jpg';
-import peinture7 from '../assets/peinture/peinture7.jpg';
-import peinture8 from '../assets/peinture/peinture8.jpg';
-import photographie1 from '../assets/photographie/photographie1.jpg';
-import photographie2 from '../assets/photographie/photographie2.jpeg';
-import photographie3 from '../assets/photographie/photographie3.jpg';
-import photographie4 from '../assets/photographie/photographie4.jpg';
-import photographie5 from '../assets/photographie/photographie5.jpg';
-import photographie6 from '../assets/photographie/photographie6.jpg';
-import photographie7 from '../assets/photographie/photographie7.jpg';
-import photographie8 from '../assets/photographie/photographie8.jpg';
-import photographie9 from '../assets/photographie/photographie9.jpg';
-import photographie10 from '../assets/photographie/photographie10.jpg';
-import poterie1 from '../assets/poterie/poterie1.jpg';
-import poterie2 from '../assets/poterie/poterie2.jpg';
-import poterie3 from '../assets/poterie/poterie3.jpg';
-import poterie4 from '../assets/poterie/poterie4.jpg';
-import poterie5 from '../assets/poterie/poterie5.jpg';
-import notFound from '../assets/404/404.jpg';
-/*import Home from '../pages/Home';
-import NotFound from '../pages/404';
-import Graphisme from '../pages/Graphisme';
-import Peinture from '../pages/Peinture';
-import Photographie from '../pages/Photographie';
-import Poterie from '../pages/Poterie';*/
+import { Link } from 'react-router-dom'
+import CryptoJS from 'crypto-js'
+import Cookies from 'js-cookie'
 
-function getRamdomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-}
-
-/*export const routeElement = [
-  {
-    element: Home,
-    path: '/',
-  },
-
-  {
-    element: Graphisme,
-    path: '/graphisme',
-  },
-
-  {
-    element: Peinture,
-    path: '/peinture',
-  },
-
-  {
-    element: Poterie,
-    path: '/poterie',
-  },
-
-  {
-    element: Photographie,
-    path: '/photographie',
-  },
-
-  {
-    element: NotFound,
-    path: '/*',
-  },
-];*/
+export const siteName = 'MyFreeWorks'
 
 export const registrationElement = [
   {
-    id: 'name-0',
+    id: 'lastName',
     title: 'Nom :',
     inputType: 'text',
     labelClass: 'form-label',
@@ -90,7 +15,7 @@ export const registrationElement = [
   },
 
   {
-    id: 'firstName-0',
+    id: 'firstName',
     title: 'Prénom(s) :',
     inputType: 'text',
     labelClass: 'form-label',
@@ -119,6 +44,7 @@ export const registrationElement = [
   {
     id: 'man',
     title: 'Masculin',
+    value: 'Masculin',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -129,6 +55,7 @@ export const registrationElement = [
   {
     id: 'woman',
     title: 'Féminin',
+    value: 'Féminin',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -139,6 +66,7 @@ export const registrationElement = [
   {
     id: 'nobinary',
     title: 'Non binaire',
+    value: 'Non binaire',
     name: 'checkitem',
     inputType: 'radio',
     labelClass: 'form-check-label',
@@ -172,7 +100,7 @@ export const registrationElement = [
     inputClass: 'form-control',
     divClass: 'mb-3',
   },
-];
+]
 
 export const connexionElement = [
   {
@@ -226,17 +154,84 @@ export const connexionElement = [
         divClass: 'mb-3',
       },
 
-      {
+      /* {
         id: 'rememberMeModal',
         title: ' Se souvenir de moi',
         labelClass: 'form-check-label',
         inputClass: 'form-check-input',
         inputType: 'checkbox',
         divClass: 'm-2 form-check',
-      },
+      },*/
     ],
   },
-];
+]
+
+export const addProductElement = [
+  {
+    id: 'nameProd',
+    title: 'Nom :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'descriptionProd',
+    title: 'Description :',
+    inputType: '',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'priceProd',
+    title: 'Prix :',
+    inputType: 'number',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'coverProd',
+    title: 'Image :',
+    placeholder: 'https://...',
+    inputType: 'file',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+  {
+    id: 'isSold',
+    title: 'En solde .?',
+    name: 'checkitem',
+    inputType: 'checkbox',
+    role: 'switch',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'mb-3 form-check form-switch',
+  },
+  {
+    id: 'soldPriceProd',
+    title: 'Prix de solde :',
+    inputType: 'number',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'd-none',
+  },
+  {
+    id: 'categorieProd',
+    divClass: 'mb-3',
+    title: 'Sélectionner la catégorie de votre produit :',
+    selectClass: 'form-select my-2',
+    option: '---',
+    value: 'autres',
+    option1: 'graphisme',
+    option2: 'peinture',
+    option3: 'poterie',
+    option4: 'photographie',
+    option5: 'autres',
+  },
+]
 
 export const menuElement = [
   {
@@ -269,381 +264,366 @@ export const menuElement = [
     to: '/photographie',
     name: 'Photographie',
   },
-];
+
+  {
+    id: 'others',
+    to: '/autres',
+    name: 'Autres',
+  },
+]
 
 export const networks = [
   {
     id: 'Facebook',
     icone: 'fs-4 text-white fa-brands fa-facebook-f',
-    link: 'https://comeup.com/profil/valdesagb',
   },
 
   {
     id: 'Twitter',
     icone: 'fs-4 text-white fa-brands fa-twitter',
-    link: 'https://comeup.com/profil/valdesagb',
   },
 
   {
     id: 'LinkedIn',
     icone: 'fs-4 text-white fa-brands fa-linkedin',
-    link: 'https://comeup.com/profil/valdesagb',
   },
-];
+]
 
-export const graphismeElement = [
+export const date = new Date()
+
+export const messageAlert =
+  "Vous serez rediriger vers le profil ComeUp du concepteur de ce site où vous pourrez discuter avec lui de vos besoins ou projets. Ne vous en faite pas, c'est totalement gratuit 😁."
+
+export const comeUpLink = 'https://comeup.com/profil/valdesagb'
+
+export const apiProductLink = 'http://localhost:3001/api/product'
+
+export const apiUserLink = 'http://localhost:3001/api/auth'
+
+export const passwordAdvice = [
   {
-    id: 'affiche-0',
-    name: 'Affiche',
-    cover: graphisme1,
-    price: 20.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: '0',
+    title: '6 caractères',
   },
-
   {
-    id: 'logo-2',
-    name: 'Logo',
-    cover: graphisme12,
-    price: 79.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: '1',
+    title: 'Une lettre majuscule',
   },
-
   {
-    id: 'design-0',
-    name: 'Design',
-    cover: graphisme2,
-    price: 399.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: '2',
+    title: 'Un chiffre',
   },
-
   {
-    id: 'dessin-0',
-    name: 'Dessin',
-    cover: graphisme5,
-    price: 739.99,
-    isSold: true,
-    soldPrice: 649.99,
-    to: '/graphisme',
+    id: '3',
+    title: 'Un caractère spécial',
   },
+]
 
-  {
-    id: 'dessin-1',
-    name: 'Proclamation',
-    cover: graphisme6,
-    price: 123.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
-  },
+export const userIcone = {
+  disconnect_connect: (
+    <i
+      className={`navbar-toggler text-white fs-3 align-items-center text-center border border-0 bi bi-person-fill`}
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar"
+      aria-controls="navbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    ></i>
+  ),
+}
 
-  {
-    id: 'page-0',
-    name: 'Cover de page',
-    cover: graphisme7,
-    price: 569.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
-  },
+export const emptyCategorie = (
+  <div className="text-center my-5">
+    Aucun produit n'est disponible actuellement. Soyez le premier à{' '}
+    <Link to="/newproduct">en créer</Link> dans cette catégorie.
+  </div>
+)
 
+export const homeEmpty = (
+  <div className="text-center my-5">
+    Aucun produit n'est disponible pour le moment. Soyez le premier à{' '}
+    <Link to="/newproduct">en créer</Link> .
+  </div>
+)
+
+export const emptyDashboard = (
+  <td className="text-center my-5">
+    Vous n'avez aucun produit actuellement.{' '}
+    <Link to="/newproduct">Ajoutez-en</Link> un dès maintenant
+  </td>
+)
+
+export const dashboard_md_header = [
   {
-    id: 'logo-1',
-    name: '3D',
-    cover: graphisme8,
-    price: 102.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: 'id',
+    name: '#',
   },
 
   {
-    id: 'visage-0',
-    name: 'Visage',
-    cover: graphisme9,
-    price: 569.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: 'name',
+    name: 'Nom',
   },
 
   {
-    id: 'graphisme-0',
-    name: 'Graphic',
-    cover: graphisme3,
-    price: 129.99,
-    isSold: true,
-    soldPrice: 15,
-    to: '/graphisme',
+    id: 'description',
+    name: 'Descrip..',
+    title: 'Description',
   },
 
   {
-    id: 'papierpeint-0',
-    name: 'Papier peint',
-    cover: graphisme10,
-    price: 98.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: 'cover',
+    name: 'Image',
   },
 
   {
-    id: 'société-0',
-    name: 'Société',
-    cover: graphisme11,
-    price: 649.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
+    id: 'price',
+    name: 'Prix(€)',
   },
 
   {
-    id: 'logo-0',
-    name: 'logo',
-    cover: graphisme4,
-    price: 99.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/graphisme',
-  },
-];
-
-export const peintureElement = [
-  {
-    id: 'peinture1-0',
-    name: 'Tableau de fleurs',
-    cover: peinture1,
-    price: 741.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'inSold',
+    name: 'Solde ?',
   },
 
   {
-    id: 'peinture2-0',
-    name: 'Tableau',
-    cover: peinture2,
-    price: 299.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'soldPrice',
+    name: 'PdS(€)',
+    title: 'Prix de solde',
   },
 
   {
-    id: 'peinture3-0',
-    name: 'Tableau de fleurs rosées',
-    cover: peinture3,
-    price: 4036.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'categorie',
+    name: 'Catégorie',
   },
 
   {
-    id: 'peinture4-0',
-    name: 'Paysage africaine',
-    cover: peinture4,
-    price: 899.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'created_At',
+    name: 'Ajouté le :',
   },
 
   {
-    id: 'peinture5-0',
-    name: 'Forêt',
-    cover: peinture5,
-    price: 199.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'updated_At',
+    name: 'MàJ',
+    title: 'Mise à jour le :',
   },
 
   {
-    id: 'peinture6-0',
-    name: 'Savane',
-    cover: peinture6,
-    price: 275.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'action',
+    name: 'Actions',
+  },
+]
+
+export const dashboard_header = [
+  {
+    id: 'name',
+    title: 'Nom',
   },
 
   {
-    id: 'peinture7-0',
-    name: 'Femme',
-    cover: peinture7,
-    price: 829.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
+    id: 'price',
+    title: 'Prix(€)',
   },
 
   {
-    id: 'peinture8-0',
-    name: 'Beauté féminine',
-    cover: peinture8,
-    price: 1099.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/peinture',
-  },
-];
-
-export const poterieElement = [
-  {
-    id: 'poterie1-0',
-    name: 'Culture hawaienne',
-    cover: poterie1,
-    price: 700.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/poterie',
+    id: 'inSold',
+    title: 'Solde ?',
   },
 
   {
-    id: 'poterie2-0',
-    name: 'Culture africaine',
-    cover: poterie2,
-    price: 9789.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/poterie',
+    id: 'action',
+    title: 'Actions',
+  },
+]
+
+export const check = (product, keyIndex) => {
+  if (product) {
+    const firstKey = Object.keys(product)[keyIndex]
+    if (firstKey) {
+      return product[firstKey]
+    }
+  }
+  return 'Error'
+}
+
+export const encoded = (data) => {
+  return CryptoJS.AES.encrypt(JSON.stringify(data), 'clef').toString()
+}
+
+export const decoded = (cookiesName) => {
+  // cookiesNames doit être un le nom de la cookies à décoder et de type string
+  const cookies = Cookies.get(cookiesName)
+  if (cookies) {
+    // Vérifier si les données des cookies existent
+    const decryptedData = CryptoJS.AES.decrypt(cookies, 'clef').toString(
+      CryptoJS.enc.Utf8
+    ) // Décoder les données avec la clé 'clef'
+
+    const decodedData = JSON.parse(decryptedData) // Parser les données JSON
+    return decodedData // Afficher les données décodées dans la console
+  }
+}
+
+export const updateUserElements = [
+  {
+    id: 'lastName',
+    title: 'Nom :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
   },
 
   {
-    id: 'poterie3-0',
-    name: 'Carafe',
-    cover: poterie3,
-    price: 875.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/poterie',
+    id: 'firstName',
+    title: 'Prénom(s) :',
+    inputType: 'text',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
   },
 
   {
-    id: 'poterie4-0',
-    name: 'Jare',
-    cover: poterie4,
-    price: 230.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/poterie',
+    id: 'dateOfBirth',
+    title: 'Date de naissance :',
+    inputType: 'date',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
+  },
+
+  /* {
+    id: 'Sex',
+    title: 'Sexe :',
+    inputType: '',
+    labelClass: 'form-label',
+    inputClass: '',
+    divClass: 'mb-1',
   },
 
   {
-    id: 'poterie5-0',
-    name: 'Vase',
-    cover: poterie5,
-    price: 940.99,
-    isSold: false,
-    soldPrice: 0,
-    to: '/poterie',
-  },
-];
-
-export const photographieElement = [
-  {
-    id: 'photographie1-0',
-    name: 'Ecureil',
-    cover: photographie1,
-    price: 500.99,
-    isSold: false,
-    to: '/photographie',
+    id: 'man',
+    title: 'Masculin',
+    value: 'Masculin',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'form-check',
   },
 
   {
-    id: 'photographie2-0',
-    name: 'Loup',
-    cover: photographie2,
-    price: 480.99,
-    isSold: false,
-    to: '/photographie',
+    id: 'woman',
+    title: 'Féminin',
+    value: 'Féminin',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'form-check',
   },
 
   {
-    id: 'photographie3-0',
-    name: 'Guépard rugissant',
-    cover: photographie3,
-    price: 740.99,
-    isSold: false,
-    to: '/photographie',
+    id: 'nobinary',
+    title: 'Non binaire',
+    value: 'Non binaire',
+    name: 'checkitem',
+    inputType: 'radio',
+    labelClass: 'form-check-label',
+    inputClass: 'form-check-input',
+    divClass: 'mb-3 form-check',
+  },*/
+
+  {
+    id: 'mail',
+    title: 'Adresse mail :',
+    inputType: 'email',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    divClass: 'mb-3',
   },
 
   {
-    id: 'photographie4-0',
-    name: 'Canard',
-    cover: photographie4,
-    price: 896.99,
-    isSold: false,
-    to: '/photographie',
+    id: 'oldPassword',
+    title: 'Ancien mot  de passe :',
+    inputType: 'password',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    placeholder: 'Entrez votre ancien mot de passe',
+    divClass: 'mb-3',
   },
 
   {
-    id: 'photographie5-0',
-    name: 'Champion',
-    cover: photographie5,
-    price: 964.99,
-    isSold: false,
-    to: '/photographie',
+    id: 'newPassword',
+    title: 'Nouveau mot de passe :',
+    inputType: 'password',
+    labelClass: 'form-label',
+    inputClass: 'form-control',
+    placeholder: 'Entrez votre le nouveau mot de passe',
+    divClass: 'mb-3',
   },
+]
 
-  {
-    id: 'photographie6-0',
-    name: 'Paysage vue de haut',
-    cover: photographie6,
-    price: 520.99,
-    isSold: false,
-    to: '/photographie',
-  },
+export const addToCart = (name, price, cart, setCart) => {
+  const currentPlantAdded = cart.find((plant) => plant.name === name)
+  if (currentPlantAdded) {
+    const cartFilteredCurrentPlant = cart.filter((plant) => plant.name !== name)
+    setCart([
+      ...cartFilteredCurrentPlant,
+      { name, price, amount: currentPlantAdded.amount + 1 },
+    ])
+  } else {
+    setCart([...cart, { name, price, amount: 1 }])
+  }
+}
 
-  {
-    id: 'photographie7-0',
-    name: 'Lac',
-    cover: photographie7,
-    price: 2504.99,
-    isSold: false,
-    to: '/photographie',
-  },
-  {
-    id: 'photographie8-0',
-    name: 'Montagne',
-    cover: photographie8,
-    price: 400.99,
-    isSold: false,
-    to: '/photographie',
-  },
+export const withdrawCart = (cart, setCart, name, price) => {
+  const currentClothesAmount = cart.find((cloth) => cloth.name === name)
+  if (currentClothesAmount) {
+    const cartFilteredCurrentClothes = cart.filter(
+      (plant) => plant.name !== name
+    )
+    if (currentClothesAmount.amount === 1) {
+      setCart([...cartFilteredCurrentClothes])
+    } else {
+      setCart([
+        ...cartFilteredCurrentClothes,
+        { name, price, amount: currentClothesAmount.amount - 1 },
+      ])
+    }
+  }
+}
 
-  {
-    id: 'photographie9-0',
-    name: 'Lac et montagne',
-    cover: photographie9,
-    price: 208.99,
-    isSold: true,
-    to: '/photographie',
-    soldPrice: 120,
-  },
+export const atLeastSixCharacters = (elem) => {
+  if (elem && elem.length >= 6) {
+    return true
+  } else {
+    return false
+  }
+}
 
-  {
-    id: 'photographie10-0',
-    name: 'Paysage lac et montagne',
-    cover: photographie10,
-    price: 785.99,
-    isSold: false,
-    to: '/photographie',
-  },
-];
+const uppercaseRegex = /[A-Z]/
+export const atLeastUppercaseLetter = (elem) => {
+  if (uppercaseRegex.test(elem)) {
+    return true
+  } else {
+    return false
+  }
+}
 
-export const homeElement = [
-  peintureElement[getRamdomInt(0, peintureElement.length)],
-  graphismeElement[getRamdomInt(0, graphismeElement.length)],
-  photographieElement[getRamdomInt(0, photographieElement.length)],
-  poterieElement[getRamdomInt(0, poterieElement.length)],
-];
+const numberRegex = /\d/
+export const atLeastOneNumber = (elem) => {
+  if (numberRegex.test(elem)) {
+    return true
+  } else {
+    return false
+  }
+}
 
-export const notFoundElement = notFound;
+const specialCharRegex = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/
+export const atLeastOneSpecialCharacter = (elem) => {
+  if (specialCharRegex.test(elem)) {
+    return true
+  } else {
+    return false
+  }
+}

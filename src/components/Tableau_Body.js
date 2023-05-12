@@ -1,15 +1,17 @@
 import React, { useContext, useEffect } from 'react'
-import View from '../../components/View'
-import { apiProductLink, emptyCategorie } from '../../data'
+import { Link, useParams } from 'react-router-dom'
 import {
   LoadingContext,
   MessageContext,
   ProductContext,
-} from '../../untils/context'
-import { Loader } from '../../untils/Loader'
-import Feedback from '../../components/Feedback'
+  UserContext,
+} from '../untils/context'
+import { apiProductLink, emptyDashboard } from '../data'
+import { Loader } from '../untils/Loader'
+import Feedback from './Feedback'
 
-function Peinture() {
+function Tableau_Body() {
+  const { id } = useParams()
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
   const {
     isDataLoading,
@@ -26,18 +28,22 @@ function Peinture() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
-  const categorie = 'peinture'
+  const { userId } = useContext(UserContext)
+
+  useEffect(() => {
+    toggleMessage(null)
+    toggleErrorMes(null)
+    toggleCodeErr(null)
+  }, [])
 
   const fetchElements = {
-    fetchUrl: `${apiProductLink}/categorie/${categorie}`,
+    fetchUrl: `${apiProductLink}/user/${id}`,
     fetchOptions: {
       method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        /*  Authorization: `Bearer ${
-          userLogin !== null ? userLogin.token : 'Error'
-        }`,*/
+        Authorization: `Bearer ${userId && userId.token}`,
       },
     },
   }
@@ -45,9 +51,6 @@ function Peinture() {
   useEffect(() => {
     toggleAllProducts(null)
     toggleIsDataLoading(true)
-    toggleMessage(null)
-    toggleErrorMes(null)
-    toggleCodeErr(null)
     fetch(fetchElements.fetchUrl, fetchElements.fetchOptions)
       .then((promise) => {
         if (!promise.ok) {
@@ -70,44 +73,35 @@ function Peinture() {
   }, [])
 
   return (
-    <section className="container my-2">
-      <div className="row">
+    <React.Fragment>
+      <tbody className="table-group-divider row">
         {isDataLoading && !isSignComplete && !isLoginComplete ? (
           <Loader />
         ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
-        ) : allProducts && allProducts === [] ? (
-          { emptyCategorie }
+        ) : allProducts && allProducts.length === 0 ? (
+          emptyDashboard
         ) : (
           allProducts &&
-          allProducts.map(
-            ({
-              _id,
-              name,
-              cover,
-              isSold,
-              price,
-              soldPrice,
-              categorie,
-              description,
-            }) => (
-              <View
-                key={_id}
-                id={_id}
-                name={name}
-                cover={cover}
-                isSold={isSold}
-                price={price}
-                soldPrice={soldPrice}
-                to={`/${categorie}`}
-                description={description}
-              />
-            )
-          )
+          allProducts.map(({ _id, name, isSold, price }) => (
+            <tr key={_id} className="row text-center">
+              <td className="col-3">{name.slice(0, 6) + '...'}</td>
+              <td className="col-3">{price}</td>
+              <td className="col-3">{isSold ? 'Oui' : 'Non'}</td>
+              <td className="col-3">
+                <Link to={`/view/product/${_id}`}>
+                  <i
+                    className="fs-5 text-black bi bi-eye"
+                    title="Voir le produit"
+                  ></i>
+                </Link>
+              </td>
+            </tr>
+          ))
         )}
-      </div>
-    </section>
+      </tbody>
+    </React.Fragment>
   )
 }
 
-export default Peinture
+export default Tableau_Body

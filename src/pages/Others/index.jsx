@@ -9,7 +9,7 @@ import {
 import { Loader } from '../../untils/Loader'
 import Feedback from '../../components/Feedback'
 
-function Peinture() {
+function Graphisme() {
   const { allProducts, toggleAllProducts } = useContext(ProductContext)
   const {
     isDataLoading,
@@ -26,7 +26,7 @@ function Peinture() {
     toggleCodeErr,
   } = useContext(MessageContext)
 
-  const categorie = 'peinture'
+  const categorie = 'autres'
 
   const fetchElements = {
     fetchUrl: `${apiProductLink}/categorie/${categorie}`,
@@ -76,8 +76,8 @@ function Peinture() {
           <Loader />
         ) : (message || errorMes) && !isSignComplete && !isLoginComplete ? (
           <Feedback />
-        ) : allProducts && allProducts === [] ? (
-          { emptyCategorie }
+        ) : allProducts && allProducts.length === 0 ? (
+          emptyCategorie
         ) : (
           allProducts &&
           allProducts.map(
@@ -110,4 +110,4 @@ function Peinture() {
   )
 }
 
-export default Peinture
+export default Graphisme
